@@ -1,0 +1,867 @@
+---
+title: "Data Visualization with R"
+author: "IBM"
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    code-fold: show
+editor: visual
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+  warning: false
+---
+
+# Course Introduction
+
+Welcome to the Data Visualization with R course.
+
+Data is everywhere and as datasets constantly are growing, they become harder to interpret in their raw forms. Data visualization helps you uncover patterns and discover insights from these seemingly complex big datasets. Being able to create simple, beautiful graphics is not only helpful to you to interpret data, but also allows you to share important insights with others. After completing this course, you will learn how to create several types of graphs, interactive dashboards, and reports. 
+
+This course begins by understanding the importance of data visualization and going over the packages this course will use. Next, you will learn how to create basic charts and plots with ggplot2. Then, you will learn how to use Leaflet with location data to create maps. Finally, you will learn how to create dashboards with Shiny and reports with R markdown. To complete this course, watch each video, check your understanding by taking the quizzes, try the hands-on labs to solidify your learning, and lastly complete the final project to use all the skills you will learn.
+
+# Module 1: Introduction to Data Visualization
+
+Data without a way to convey the story behind it to yourself or others is just numbers on a page. You can observe and tell the story of your data in a more impactful way through visualization. In this module, you will learn the basics of data visualization using R, including the fundamental components that are shared by all charts and plots, and how to bring those components to life using the ggplot2 package for R. You will also learn how to create three common chart types, including bar, histogram, and pie charts, from the qualitative and quantitative data.
+
+**Learning Objectives**
+
+-   Classify charts into six main categories based on goals, aesthetics, and visual features
+
+-   Create bar charts using the ggplot2 package
+
+-   Create histogram charts using the ggplot2 package
+
+-   Create pie charts using the ggplot2 package
+
+-   Describe the components of a ggplot2 visualization
+
+-   Choose an appropriate graph to visualize data in R
+
+![](clipboard-3258144016.png)
+
+![](clipboard-2372118649.png)
+
+![](clipboard-1988252257.png)
+
+![](clipboard-2527263339.png)
+
+## Summary & Highlights 
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+-   You can use data visualization to help you see **trends**, **patterns**, or **anomalies** that are not obvious when looking at raw data. 
+
+-   The six main categories of charts are **comparison**, **trend**, **part to whole**, **correlation**, **relationship** and **connection**, and **map**. 
+
+-   The R packages for visualization are `ggplot2` for most categories of charts and `Leaflet` for maps.  
+
+-   The three components of a plot are-**data**(the dataset), **aesthetics** (such as the *color* or *position*), and **geometry** (including *points*, *lines*, *shapes*, etc.) 
+
+-   While the `qplot()` function provides a quick and easy way to plot data, the `ggplot()` function provides the most flexibility. 
+
+## Bar Charts
+
+## Histograms
+
+## Pie Charts
+
+## Summary & Highlights 
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+-   You can create basic bar chart, histograms, pie charts, and more by using the **qplot()** function. 
+
+-   To create more complex charts, use the **ggplot()** function. 
+
+-   Qualitative data describes some data quality, data attribute, or data category, while quantitative data is data that is measured and described numerically. 
+
+-   Using the parameters of the **qplot()** function, you can change a bar chart’s color, title, and axis labels. 
+
+-   You can adjust the histogram chart's bin width, outline color, axis limits and labels, fill color, and titles using the parameters of the **qplot()** function. 
+
+-   Stacked bar charts and pie charts both show the distribution of the different categories in categorical variables. 
+
+-   Pie charts are stacked bar charts that are transformed to polar coordinates (a circle) using the **coord_polar()** function.
+
+## CheatSheet: Basic Plots
+
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Command**      | **Syntax**         | **Description**                                                                                       | **Example**                                                                                                                                                  |
++==================+====================+=======================================================================================================+==============================================================================================================================================================+
+| library(ggplot2) | `library(ggplot2)` | `ggplot2` is a system for declaratively creating graphics, based on The Grammar of Graphics.          | `library(ggplot2)`                                                                                                                                           |
+|                  |                    |                                                                                                       |                                                                                                                                                              |
+|                  |                    |                                                                                                       | `p <- qplot(hp, mpg, data=mtcars, shape=am, color=am,facets=gear~cyl, main=”Scatterplots of MPG vs. Horsepower”,xlab=”Horsepower”, ylab=”Miles per Gallon”)` |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ggplot()         | `ggplot()`         | `ggplot()` Initializes a ggplot object.                                                               | `ggplot(mtcars,aes(x=wt,y=mpg))`                                                                                                                             |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_area()      | `geom_area()`      | `geom_area()` is for plotting area graphs,                                                            | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_area()`                                                                                                                 |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_line()      | `geom_line()`      | `geom_line()` is for plotting line graphs,                                                            | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_line()`                                                                                                                 |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_histogram() | `geom_histogram()` | `geom_histogram()` is for plotting histogram.                                                         | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_histogram()`                                                                                                            |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_bar()       | `geom_bar()`       | `geom_bar()` is for plotting bar graphs.                                                              | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_bar()`                                                                                                                  |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_map()       | `geom_map()`       | `geom_map()` is for plotting maps.                                                                    | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_map()`                                                                                                                  |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| qplot()          | `qplot()`          | `qplot()` You can use this quick plot function to create simple plots.                                | `qplot(data,x=feature1,y=feature2,geom='point')`                                                                                                             |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| coord_polar()    | `coord_polar()`    | `coord_polar()`is used  to produce a pie chart, which is just a stacked bar plot in polar coordinates | `coord_polar()`                                                                                                                                              |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+# Module 2: Basic plots, maps and customization
+
+In this module, you will take your data visualization skills to the next level! You will learn how to create three plot types, including scatter plots, line, plots, and box plots, using the ggplot2 library and then customize the visualizations using annotations and customized axis titles and text labels. You will also learn about faceting, a way to visualize each level of a discrete or categorical variable, and different ways to work with themes. Finally, you will learn about a unique chart type called a map that you can create using geolocation data and the Leaflet library.
+
+**Learning Objectives**
+
+-   Create scatter plots using the ggplot2 library
+
+-   Create line graphs using the ggplot2 library
+
+-   Create box plots using the ggplot2 library
+
+-   Generate customized maps using the Leaflet library
+
+-   Design customized plots using faceting, themes, and the ggthemes package
+
+-   Design customized plots using annotations, axis titles, and text labels
+
+```{r message=TRUE}
+library(tidyverse) # Loading all packages in tidyverse
+
+
+
+```
+
+## Scatter plot
+
+**Creating a quick scatter plot using `ggplot`** **package**
+
+```{r}
+
+library(ggplot2)
+qplot(x=wt,y=mpg,data = mtcars,color=factor(cyl))+geom_point(shape=19)# Quick plot
+
+
+```
+
+**Creating a conventional scatter plot using `ggplot`** **package**
+
+```{r}
+mtcars %>% ggplot(aes(wt,mpg,color=factor(cyl)))+
+  geom_point(shape=19)+
+  labs(color="Cylinder",
+       x="Weight",y="Miles per Gallon",title = "Scatter plot")
+```
+
+## Line Plots
+
+```{r}
+# EU Stock Markets data sets
+head(EuStockMarkets)
+
+
+EuStockDF<-as.data.frame(EuStockMarkets)
+EuStockDF$Date<-as.numeric(time(EuStockMarkets))
+
+head(EuStockDF)
+
+# Basic line plot
+
+ggplot(EuStockDF, aes(x=Date,y=SMI))+
+  geom_line()+
+  labs(y="Closing price of Switzerland (SMI) stock index")
+
+# Multiple line plot
+ggplot(EuStockDF, aes(x=Date))+
+  geom_line(aes(y=DAX),color=2)+
+  geom_line(aes(y=SMI),color=3)+
+  geom_line(aes(y=CAC),color=4)+
+  geom_line(aes(y=FTSE),color=5) # NOT Useful
+
+```
+
+**Lets make data `tidy`**
+
+```{r}
+head(EuStockMarkets) #Messy data
+library(broom)
+
+tidy(EuStockMarkets) %>% 
+  rename(Date=index,Stock_index=series,
+         Price=value)->tidy_stocks
+head(tidy_stocks)
+
+ggplot(tidy_stocks,aes(x=Date,y=Price))+
+  geom_line(aes(color=Stock_index))+
+  labs(color="Stock index")+
+  theme_bw()
+ 
+```
+
+## Box-plots
+
+```{r}
+qplot(factor(cyl),mpg,data = mtcars,
+      geom = "boxplot")
+```
+
+```{r}
+library(plotly)
+
+ggplot(mtcars,aes(x=factor(cyl),y=mpg))+
+  geom_boxplot()+
+  labs(x="Number of cylinder",y="Miles per Gallon",
+       subtitle = "Median MPG is the lowest for 8-cylynder cars and highest for 4-cylinder cars ")
+  ggplotly()
+
+```
+
+## Summary & Highlight
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+-   A scatter plot shows how two variables relate to each other across the points of the dataset. 
+
+-   Create simple scatter plots using the **qplot()** function or more complex scatter plots using the **ggplot()** and **geom_point()** functions in the gggplot2 library. 
+
+-   Change the aesthetics of a scatter plot, including the shapes and colors of the individual points, by using the **geom_point()** and **aes()** functions. 
+
+-   Line plots visualize time series data. 
+
+-   Create a line plot by specifying the x and y axis in **aes()**, and using the **geom_line()** function. 
+
+-   Modify the x and y axis labels using the **labs()** function.  
+
+-   Change the color of the lines in a line chart by setting the color property of the **aes()** function. 
+
+-   Create multiple line plots by adding **geom_line()** functions. 
+
+-   You can create multiple line plots with “messy” data by first tidying the dataset and plotting it with a single **geom_line()** function. 
+
+-   A box plot summarizes the distribution of sorted numerical data. 
+
+-   The Plotly package helps to create interactive graphs and provides online graphing, analytics, and statistics tools. 
+
+-   Create simple box plots using the **qplot()** function, or more customizable box plots using the **ggplot()** function and add interactivity using the **ggplotly()** function.
+
+## Cheat Sheet: Basic Plots
+
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Command**      | **Syntax**         | **Description**                                                                                       | **Example**                                                                                                                                                  |
++==================+====================+=======================================================================================================+==============================================================================================================================================================+
+| library(ggplot2) | `library(ggplot2)` | `ggplot2` is a system for declaratively creating graphics, based on The Grammar of Graphics.          | `library(ggplot2)`                                                                                                                                           |
+|                  |                    |                                                                                                       |                                                                                                                                                              |
+|                  |                    |                                                                                                       | `p <- qplot(hp, mpg, data=mtcars, shape=am, color=am,facets=gear~cyl, main=”Scatterplots of MPG vs. Horsepower”,xlab=”Horsepower”, ylab=”Miles per Gallon”)` |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ggplot()         | `ggplot()`         | `ggplot()` Initializes a ggplot object.                                                               | `ggplot(mtcars,aes(x=wt,y=mpg))`                                                                                                                             |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_area()      | `geom_area()`      | `geom_area()` is for plotting area graphs,                                                            | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_area()`                                                                                                                 |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_line()      | `geom_line()`      | `geom_line()` is for plotting line graphs,                                                            | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_line()`                                                                                                                 |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_histogram() | `geom_histogram()` | `geom_histogram()` is for plotting histogram.                                                         | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_histogram()`                                                                                                            |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_bar()       | `geom_bar()`       | `geom_bar()` is for plotting bar graphs.                                                              | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_bar()`                                                                                                                  |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_map()       | `geom_map()`       | `geom_map()` is for plotting maps.                                                                    | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_map()`                                                                                                                  |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| qplot()          | `qplot()`          | `qplot()` You can use this quick plot function to create simple plots.                                | `qplot(data,x=feature1,y=feature2,geom='point')`                                                                                                             |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| coord_polar()    | `coord_polar()`    | `coord_polar()`is used  to produce a pie chart, which is just a stacked bar plot in polar coordinates | `coord_polar()`                                                                                                                                              |
++------------------+--------------------+-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Customize Plots
+
+-   Labels: `labs()`
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = factor(cyl))) +
+  labs(
+    x = "Weight (1000 lbs)",
+    y = "Miles/(US) gallon",
+    color = "Cylinders",
+    title = "Mileage by weight and cylinders",
+    subtitle = "Source: 1974 Motor Trend US magazine"
+  )
+
+```
+
+-   Text labels: `geom_text()`
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = factor(cyl))) +
+  geom_text(aes(label = rownames(mtcars)),
+            check_overlap = TRUE, hjust = "inward")
+
+```
+
+## Custom Annotations
+
+You can use the following functions to emphasize important elements of your plot:
+
+-   geom_vline(xintercept)
+
+-   geom_hline(yintercept)
+
+-   geom_abline(slope, intercept)
+
+-   geom_rect()
+
+-   annotate(geom)
+
+**Custom Annotations-Example**
+
+```{r}
+
+median(mtcars$mpg) # Median MPG
+
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(bins = 10) +
+  labs(
+    x = "Miles/(US) gallon",
+    y = "Count",
+    title = "Distribution of Miles/Gallon"
+  ) +
+  geom_vline(aes(xintercept = 19.2), color = "red") +
+  annotate(
+    geom = "text",
+    label = "Median = 19.2",
+    x = 21,
+    y = 7,
+    hjust = 0,
+    color = "red"
+  )
+
+```
+
+## Themes and Faceting
+
+-   Faceting
+
+```{r}
+ggplot(mtcars,aes(x=mpg))+
+  geom_histogram()+
+  facet_wrap(~cyl)
+```
+
+-   Themes
+
+```{r}
+
+ggplot(mtcars, aes(cyl))+
+  geom_bar()->p
+  
+p+theme_bw()
+p+theme_minimal()
+
+# and so on.
+```
+
+There are also lots of functions within `theme()`.
+
+![](clipboard-141919988.png)
+
+```{r}
+ggplot(mtcars, aes(cyl)) +
+  geom_bar() +
+  ggtitle("Number of Cylinders") +
+  theme(
+    plot.background = element_rect(color = "green", fill = "gray"),
+    plot.title = element_text(face = "bold", color = "blue"),
+    axis.line = element_line(color = "red")
+  )
+
+```
+
+**More themes in `ggthemes`** package
+
+```{r}
+library(ggthemes) # For different ggplot themes
+mtcars %>% ggplot(aes(wt,mpg,color=factor(cyl)))+
+  geom_point(shape=19)+
+  labs(color="Cylinder",
+       x="Weight",y="Miles per Gallon",title = "Scatter plot")->g  
+
+g+theme_economist()+
+  scale_color_economist()
+
+g+theme_clean()+
+  scale_color_colorblind()
+```
+
+## v2.2.3 - Maps with Leaflet
+
+```{r}
+library(leaflet)
+map<-leaflet() 
+map %>% 
+  addTiles() %>%
+  addMarkers(lng=-73.9851,lat = 40.7589,
+                   popup = "Times Square")
+
+map %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addMarkers(lng = 2.2945, lat = 48.8584, popup = "Eiffel Tower")
+
+```
+
+**Creating maps from data**
+
+```{r}
+head(quakes)
+
+leaflet(quakes) %>% addTiles() %>% 
+  addCircleMarkers(lng = quakes$long,lat=quakes$lat)
+
+leaflet(quakes) %>% addTiles() %>%
+  addCircleMarkers(clusterOptions = markerClusterOptions())
+
+leaflet(quakes) %>% addTiles() %>%
+  addCircles(lng = quakes$long,lat=quakes$lat)
+
+leaflet(quakes) %>% addTiles() %>%
+  addMarkers(lng = 86.92,lat=27.99, popup = "Mount Everest") %>% 
+  addRectangles(86.9, 27.95, 87, 28.05)
+
+```
+
+## Summary & Highlights 
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+-   Annotations provide metadata (or additional information about the data being displayed) for the plot. 
+
+-   Customize the titles associated with the plot, axes, and legends using the **labs()** function. 
+
+-   Automatically remove overlapping labels from a plot by using **check_overlap = TRUE** in the **geom_text()** function. 
+
+-   Faceting provides a way to visualize each level of a discrete or categorical variable by dividing a plot into subplots based on a variable. 
+
+-   The **ggplot()** function has several built-in themes, including **theme_bw()**, **theme_minimal()**, **theme_classic()**, **theme_void()**, **theme_linedraw()**, **theme_light()**, and **theme_dark()**. 
+
+-   You can also customize themes by changing the borders, backgrounds, lines, text, and more by using the **theme()** function. 
+
+-   The ggthemes package includes more themes and color scales and you can easily try different themes by first storing the base plot. 
+
+-   Create interactive maps using the Leaflet library. 
+
+-   A map tile can appear in many different styles. 
+
+-   Add markers and captions to a map individually or from a data frame and then adjust the way they appear. 
+
+## CheatSheet -Basic Plots and Customization and Maps
+
++-----------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ommand**      | **Syntax**                                                                     | **Description**                                                                                                                                                                                                                                                                                                                                       | **Example**                                                                                                                                         |
++=================+================================================================================+=======================================================================================================================================================================================================================================================================================================================================================+=====================================================================================================================================================+
+| labs            | `labs(x=x-label,y=y-label,color="legend",title=graph-title)`                   | You can use the labs() function to change the x-axis label, y-axis label, the legend title, the entire plot title, the plot subtitle, and the plot captions. You do not have to add all these labels, but it is a good idea to make sure that at least the x and y-axis, and the title are informative. The color parameter changes the legend title. | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_point(shape=1)+labs(x="wt",y="mpeg",color="cylinder",title="MPG vs WT")`                                       |
++-----------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| geom_text()     | `geom_text(aes(label=rownames(data))`                                          | You use this function to add text labels to data points.                                                                                                                                                                                                                                                                                              | `ggplot(mtcars,aes(x=wt,y=mpg))+geom_point(shape=1)+labs(x="wt",y="mpeg",color="cylinder",title="MPG vs WT")+geom_text(aes(label=rownames(mtcars))` |
++-----------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Faceting        | `ggplot(data,aes(x=feature1))+geom_histogram()+facet_wrap(~discrete-feature1)` | Facets divide a plot into subplots based on the values of discrete or categorical variables. Facets are a good way to explore the data further.                                                                                                                                                                                                       | `ggplot(mtcars,aes(x=mpeg))+geom_histogram()+facet_wrap(~cyl)`                                                                                      |
++-----------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Cheat Sheet - Customization and Maps using Leaflet
+
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Command**                      | **Syntax**                                                                                                                                                                                                       | **Description**                                                                                                                                                                                                                                                                                                                                                                                        | **Example**                                                                                                                                                                                                                                                                                                                                                                                                  |
++==================================+==================================================================================================================================================================================================================+========================================================================================================================================================================================================================================================================================================================================================================================================+==============================================================================================================================================================================================================================================================================================================================================================================================================+
+| Install Leaflet Package          | `install.packages("leaflet")`                                                                                                                                                                                    | Leaflet is an open-source library that provides tools for creating interactive maps. Leaflet also allows to integrate maps into websites or web applications. Leaflet supports various map providers, including OpenStreetMap, Mapbox, and many others.                                                                                                                                                | `install.packages("leaflet")`                                                                                                                                                                                                                                                                                                                                                                                |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Load Leaflet Package             | `library(leaflet)`                                                                                                                                                                                               | Load leaflet package in R environment.                                                                                                                                                                                                                                                                                                                                                                 | `library(leaflet)`                                                                                                                                                                                                                                                                                                                                                                                           |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Map Tiles                        | `leaftlet()addTiles()`                                                                                                                                                                                           | The **leaflet()** function adds a blank map to the leaflet work space. The **addTiles()** function adds features (layers) to basic map. It will bring in the default OpenStreetMap (OSM) tiles.                                                                                                                                                                                                        | `mymap <- leaftlet() %>% addTiles()mymap`                                                                                                                                                                                                                                                                                                                                                                    |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| List all map providers           | `names(providers)`                                                                                                                                                                                               | In addition to default OpenStreetMap (OSM) tiles, Leaflet supports other tiles stored in a list called providers. **names(providers)** lists the names of all the map tiles.                                                                                                                                                                                                                           | `names(providers)`                                                                                                                                                                                                                                                                                                                                                                                           |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Use tiles from specific provider | `addProviderTiles(map, provider, layerId, group, options)`                                                                                                                                                       | Instead of using addTiles(), you have the option to utilize **addProviderTiles()** for incorporating maps from various providers with customization capabilities.                                                                                                                                                                                                                                      | `mymap <- leaflet() %>% addProviderTiles("Esri.WorldPhysical")mymap`                                                                                                                                                                                                                                                                                                                                         |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Markers                      | `addMarkers(lng, lat, layerID, group, popup, popupOptions, label, labeloptions, clusterOptions)`                                                                                                                 | The **addMarkers()** function serve to highlight particular locations on the map through the use of latitude/longitude coordinates. To include a caption, utilize the 'popup' parameter. Additionally, labels can be attached to markers for constant display or to appear upon mouseover.                                                                                                             | `Example 1:mymap = leaflet() %>% addTiles() %>% addMarkers(lng = -73.9851, lat = 40.7589, label = "Default Label", labelOptions = labelOptions(noHide = F))mymapExample 2:mymap = leaflet() %>% addTiles() %>% addPopups(-93.65, 42.0285, 'Here is the Place of Interest', options = popupOptions(closeButton = TRUE))mymap`                                                                                 |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Circle Markers               | `addCircleMarkers(map, lng, lat, radius, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions, clusterOptions)`     | The **addCircleMarkers()** function places circles, rather than icons, to indicate a location on the map. In case the map becomes overly crowded, enhancing clarity is possible by consolidating markers into clusters. The 'clusterOptions' parameter facilitates grouping markers by region and displaying the count of markers in each region.                                                      | `#In this example, we use "quakes", a built-in dataset, which provides the locations of 1000 earthquakes near Fiji since 1964.head(quakes)Example 1:mymap = leaflet(quakes) %>% addProviderTiles("Esri.WorldPhysical") %>% addCircleMarkers(weight = 3, radius=3, color="#ffa500")mymapExample 2:mymap <- leaflet(quakes) %>% addTiles() %>% addCircleMarkers(clusterOptions = markerClusterOptions())mymap` |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Circles                      | `addCircles (map, lng, lat, radius, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions, clusterOptions)`          | The **addCircles()** function is used to introduce a circle, emphasizing a specific area of interest. The arguments for this function include the coordinates of the point. Notably, the size of the circle dynamically adjusts as you zoom in or out on the map.                                                                                                                                      | `mymap <- leaflet(quakes) %>% addTiles() %>% addCircles(lng = quakes$long, lat = quakes$lat)mymap`                                                                                                                                                                                                                                                                                                           |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Rectangles                   | `addRectangles(map,lat1, lng1, lat1, lng2, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions)`                   | The **addRectangles()** function is used to add a rectangle shape to highlight an area of interest. The required arguments for this function are the coordinates of four points, defining the boundaries of the rectangle.                                                                                                                                                                             | `mymap <- leaflet(quakes) %>% addTiles() %>% addMarkers(lng = 86.92, lat = 27.99, popup = "Mount Everest") %>% addRectangles(86.9, 27.95, 87, 28.05)mymap`                                                                                                                                                                                                                                                   |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Polygons                     | `addPolygons(map, lng, lat, layerId, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, dashArray, smoothFactor, noClip, popup, popupOptions, label, labelOptions, options, highlightOptions)` | The **addPolygons()** function is used to add a custom polygon shape to highlight an area of interest.                                                                                                                                                                                                                                                                                                 | `leaflet(quakes) %>% addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1, color = "#03F",weight = 5,opacity = 0.5,fill = TRUE,fillColor = color,fillOpacity = 0.2)mymap`                                                                                                                                                                                                                         |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Colors                       | `colorNumeric()colorBin()colorQuantile()colorFactor()`                                                                                                                                                           | Functions such as colorNumeric(), colorBin(), colorQuantile(), colorFactor() allow to add color to shapes using the palette defined. For example, colorNumeric maps numeric values to colors according to a given palette. While colorFactor maps factors to colors, colorBin performs binning based on value. You can also manually specify color by explicitly passing the value for color argument. | `# define numeric color palettepal <- colorNumeric(palette = "Reds", domain = quakes$mag)# add circles and legend to mapmymap <- leaflet(quakes) %>% addTiles() %>% addCircles(lng = quakes$long, lat = quakes$lat, color = ~pal(mag)) %>%mymap`                                                                                                                                                             |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Add Legend                       | `addLegend(position, colors, labels, opacity, title)`                                                                                                                                                            | Use the **addLegend()** function to add a legend. Customize its appearance by specifying colors, titles, and position according to your preferences.                                                                                                                                                                                                                                                   | `mymap = leaflet(quakes) %>% addTiles() %>% addLegend( position = "bottomright", colors = rgb(t(col2rgb(palette())) / 255), labels = palette(), opacity = 1, title = "Legend" )mymap`                                                                                                                                                                                                                        |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Set View                         | `setView(lat, lng, zoom)`                                                                                                                                                                                        | Use the **setView()** function to center the map to a particular point and customize the zoom.                                                                                                                                                                                                                                                                                                         | `mymap <- leaflet() %>% addTiles() %>% addProviderTiles("OpenTopoMap") %>% setView(lng = -71.0589, lat = 42.3601, zoom = 12)mymap`                                                                                                                                                                                                                                                                           |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+# Module 3: Dashboard
+
+## Introduction to Dashboards
+
+![](clipboard-3356584878.png){width="545"}
+
+![](clipboard-702528267.png){width="539"}
+
+![](clipboard-877393551.png){width="571"}
+
+![](clipboard-432625582.png){width="583"}
+
+![](clipboard-2865225056.png){width="521"}
+
+```{r}
+library(shiny)
+
+# Define UI for application that draws a histogram (User)
+
+ui<-shinyUI(fluidPage(
+  # Application title
+  titlePanel("Old Faithful Geyser Data"),
+  # Define sidebar layout with 
+  # sidebar panel and main panel
+  sidebarLayout(
+    sidebarPanel(
+      # Add slider
+      sliderInput("bins", "Number of bins:",
+                  min = 1,
+                  max = 50,
+                  value=30
+        
+      )
+    ),
+    mainPanel(
+      plotOutput("distPlot")
+    )
+  )
+)
+  
+)
+
+
+
+# Server (me)
+library(ggplot2)
+
+server<-shinyServer(function(input, output){
+  output$distPlot<-renderPlot({
+    # generates bins from input$bins of ui.R
+    bins<-input$bins
+    # draw a histogram with specified number of bins
+    ggplot(faithful,aes(x=waiting))+
+      geom_histogram(bins = bins)+
+      labs(x="Waiting time",y="frequency",title = "Histogram of waiting time ")+
+      theme(text = element_text(size = 20))
+    
+  })
+  
+}
+  
+)
+
+
+shinyApp(ui = ui, server = server)
+
+
+
+```
+
+## Summary & Highlights 
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+The best dashboards answer critical business questions.  
+
+An interactive dashboard is made up of four components: Analyze, visualize, interact, and Serve. 
+
+The Shiny package helps you build interactive dashboard apps using R. 
+
+A Shiny app works by defining a user interface (UI) and back-end server logic that work together to generate visualizations based on user input. 
+
+There are two standards for creating Shiny application files: a single file or two files named server.R and ui.R located in a single folder 
+
+Control widgets, called inputs, are web elements that users can interact with, including HTML tags, layouts, and widgets. 
+
+The Server performs the logic whenever input widgets change and then sends the result back to the respective UI output elements. 
+
+You construct the UI for a Shiny app using the **shinyUI()** function. 
+
+The **fluidPage()** function holds the title and defines the layout for the app. 
+
+A Shiny dashboard can have one of several layouts. A common layout is the sidebar layout, which has web controls in a sidebar on the left and plots on the main area on the right of the dashboard. 
+
+To construct the user interface (UI) for a simple Shiny application with a sidebar layout: 
+
+-   Add a title panel using **titlePanel()**. 
+
+-   Define a layout using **sidebarLayout()**. 
+
+-   Add **sidebarPanel()** and **mainPanel()** panels to the layout. 
+
+-   Add interactive web components to the sidebar panel, such as **sliderInput()**. 
+
+-   Create a plot element in the main panel using **plotOutput()**, passing in an id that the server logic will use to return the plot. 
+
+The server logic for the Shiny application: 
+
+-   Retrieves the input from a web control. 
+
+-   Gets the dataset. 
+
+-   Performs the application logic on the data using the control input.  
+
+-   Generates the plot using the data from the result of the application logic. 
+
+-   Sends the plot back to the UI output element. 
+
+## CheatSheet - DashBoard
+
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| **Command**     | **Syntax**                                          | **Description**                                                                                                              | **Example**                                                                                                                     |
++=================+=====================================================+==============================================================================================================================+=================================================================================================================================+
+| Install shiny   | `install.packages("name of the packae")`            | Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. | `install.packages("shiny")`                                                                                                     |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| load shiny      | `library("name of the packae")`                     | Run library(shiny) to load the shiny and make it available in your current R session.                                        | `library(shiny)`                                                                                                                |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| shinyUI         | `shinyUI(ui)`                                       | files to register a user interface with Shiny.                                                                               |                                                                                                                                 |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| fluidPage       | `fluidPage(..., title = " " , ...,)`                | To create rows within the grid you use the fluidRow() function.                                                              | `fluidPage(titlePanel("Motor Trend Car Road Tests Data"), verticalLayout())`                                                    |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| titlePanel      | `titlePanel("title")`                               | An application title to display.                                                                                             | `titlePanel("Motor Trend Car Road Tests Data")`                                                                                 |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| vertical_layout | `vertical_layout(objects...)`                       | Lays out elements vertically, one by one below one another.                                                                  | `verticalLayout(plotOutput("histPlot"),sliderInput( inputId = "bins", label = "Number of bins:", min = 1, max = 10, value = 5)` |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| sliderInput     | `sliderInput(inputId, label, min, max, value)`      | Constructs a slider widget to select a numeric value from a range.                                                           | `sliderInput("bins", "Number of bins:", 1, 10, 5)`                                                                              |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| plotOutput      | `plotOutput(outputId, width = "", height = "",...)` | Constructs a slider widget to select a numeric value from a range.                                                           | `sliderInput("bins", "Number of bins:", 1, 10, 5)`                                                                              |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Install ggplot2 | `install.packages("name of the packae")`            | ggplot2 is a plotting package that makes it simple to create complex plots from data in a data frame.                        | `install.packages("ggplot2")`                                                                                                   |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| load ggplot     | `library("name of the packae")`                     | Run library(ggplot) to load the ggplot and make it available in your current R session.                                      | `library(ggplot)`                                                                                                               |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| ggplot          | `ggplot(object..)`                                  | It can greatly improve the quality and aesthetics of your graphics, and will make you much more efficient in creating them.  | `ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = input$bins)`                                                              |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| geom_histogram  | `geom_histogram()`                                  | Histograms ( geom_histogram() ) display the counts with bars.                                                                | `geom_histogram(bins = input$bins)`                                                                                             |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| theme           | `theme(line,rect,text,...)`                         | Themes are a powerful way to customize the non-data components of your plots.                                                | `theme(text = element_text(size = 20)`                                                                                          |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| shinyServer     | `shinyServer(objects...)`                           | This generally involves creating functions that map user inputs to various kinds of output.                                  | `shinyServer( function(input, output))`                                                                                         |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| renderPlot      | `renderPlot(objects...)`                            | Renders a reactive plot that is suitable for assigning to an output slot.                                                    | `renderPlot({ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = input$bins)})`                                                |
++-----------------+-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+## Explore Shiny Components
+
+## Deployment
+
+![](clipboard-3814965138.png){width="633"}
+
+![](clipboard-2153680912.png)
+
+## Summary & Highlights
+
+Congratulations! You have completed this lesson. At this point in the course, you know:  
+
+You add web controls to a sidebar panel using various functions, for example, use the **varSelectInput()** function to create a control that contains a drop-down list of choice or the **sliderInput()** function to create a slider control. 
+
+You can add HTML elements to a panel. For example, you can add heading text by using the heading functions, like **h3()**, add text using the paragraph function, **p()**, or insert a line break using **br()**. 
+
+In the main panel, you can define a tabbed panel that contains multiple tabs of content. The **tabsetPanel()** function creates the tabset panel and then you use the **tabPanel()** function to add each new tab. 
+
+In the UI, you specify the location of a plot by using the **plotOutput()** function passing in an id that the server logic will use to return the plot, for example “p1”. 
+
+In the server logic for the Shiny app, you construct the plots and then render them using the **renderPlot()** function. You assign the plot to the output parameter using the id that you assigned to the **plotOutput()** function in the UI, for example, output\$p1.  
+
+There are three ways to deploy a Shiny app: 
+
+-   shinyapps.io 
+
+-   Shiny Server 
+
+-   RStudio Connect 
+
+To publish a Shiny dashboard using shinyapps.io:
+
+-   Create an shinyapp.io account.
+
+-   Publish the app from RStudio and connect it to your shinyapp.io account.
+
+R Markdown files combine code and text, they can be knitted to create a reproducible report in different formats like HTML or PDF.
+
+There are three main components of R Markdown files:
+
+-   YAML header
+
+-   Text and markdown
+
+-   R code chunks
+
+## CheatSheet - Dashboard Application
+
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| **Command**     | **Syntax**                                                              | **Description**                                                                                                                                                                                                    | **Example**                                                                                                                           |
++=================+=========================================================================+====================================================================================================================================================================================================================+=======================================================================================================================================+
+| Install shiny   | `install.packages("name of the package")`                               | Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R.                                                                                       | `install.packages("shiny")`                                                                                                           |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| load shiny      | `library("name of the package")`                                        | Run library(shiny) to load the shiny and make it available in your current R session.                                                                                                                              | `library(shiny)`                                                                                                                      |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| shinyUI         | `shinyUI(ui)`                                                           | files to register a user interface with Shiny.                                                                                                                                                                     |                                                                                                                                       |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| fluidPage       | `fluidPage(..., title = " " , ...,)`                                    | To create rows within the grid you use the fluidRow() function.                                                                                                                                                    | `fluidPage(titlePanel("Motor Trend Car Road Tests Data"), verticalLayout())`                                                          |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| titlePanel      | `titlePanel("title")`                                                   | An application title to display.                                                                                                                                                                                   | `titlePanel("Motor Trend Car Road Tests Data")`                                                                                       |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| sidebarLayout   | `sidebarLayout(sidebarPanel, mainPanel, position = c("left", "right"))` | Create a layout (sidebarLayout()) with a sidebar (sidebarPanel()) and main area (mainPanel()).                                                                                                                     | `sidebarLayout( sidebarPanel( sliderInput("obs", "Number of observations:",0,1000,500 ), mainPanel(plotOutput("distPlot") )`          |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| sidebarPanel    | `sidebarPanel(..., width = 4)`                                          | The sidebarPanel() containing input controls.                                                                                                                                                                      | `sidebarPanel( sliderInput("obs", "Number of observations:",0,1000,500 )`                                                             |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| varSelectInput  | `varSelectInput( inputId, label, data, selected = " ")`                 | Create a select list that can be used to choose a single or multiple items from the column names of a data frame.                                                                                                  | `varSelectInput("continuous_variable", "Select Continuous Variable", data = select(mtcars, -categorical_varibles), selected = "mpg")` |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| numericInput    | `numericInput( inputId, label, value)`                                  | Create an input control for entry of numeric values.                                                                                                                                                               | `numericInput("bins","Number of bins",min = 2, max = 20,value = 10)`                                                                  |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| radioButtons    | `radioButtons(inputId, label, choices, selected = NULL)`                | Create a set of radio buttons used to select an item from a list.                                                                                                                                                  | `radioButtons("hist_fill", "Histogram fill:", choices = c("default", "blue"))`                                                        |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| mainPanel       | `mainPanel(objects...)`                                                 | Create a main panel containing output elements that can in turn be passed to sidebarLayout.                                                                                                                        | `mainPanel(tabsetPanel( tabPanel("Distribution of Numerical Variables",plotOutput("p1"), plotOutput("p2") )`                          |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| tabsetPanel     | `tabsetPanel(objects...)`                                               | Tabsets are useful for dividing output into multiple independently viewable sections.                                                                                                                              | `tabsetPanel( tabPanel("Distribution of Numerical Variables",plotOutput("p1"),plotOutput("p2"))`                                      |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| plotOutput      | `plotOutput(outputId, width = "", height = "",...)`                     | Constructs a slider widget to select a numeric value from a range.                                                                                                                                                 | `plotOutput("p1")`                                                                                                                    |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Install ggplot2 | `install.packages("name of the package")`                               | ggplot2 is a plotting package that makes it simple to create complex plots from data in a data frame.                                                                                                              | `install.packages("ggplot2")`                                                                                                         |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| load ggplot     | `library("name of the package")`                                        | Run library(ggplot) to load the ggplot and make it available in your current R session.                                                                                                                            | `library(ggplot)`                                                                                                                     |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| ggplot          | `ggplot(object..)`                                                      | It can greatly improve the quality and aesthetics of your graphics, and will make you much more efficient in creating them.                                                                                        | `ggplot(mtcars, aes(x = !!input$continuous_variable))`                                                                                |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| geom_histogram  | `geom_histogram()`                                                      | Histograms ( geom_histogram() ) display the counts with bars.                                                                                                                                                      | `geom_histogram(bins = input$bins)`                                                                                                   |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| geom_boxplot    | `geom_boxplot()`                                                        | The boxplot compactly displays the distribution of a continuous variable.                                                                                                                                          | `ggplot(mtcars, aes(y = !!input$continuous_variable)) +geom_boxplot()`                                                                |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| coord_flip      | `coord_flip(xlim = NULL, ylim = NULL, expand = TRUE)`                   | Flipped cartesian coordinates so that horizontal becomes vertical, and vertical, horizontal. This is primarily useful for converting geoms and statistics which display y conditional on x, to x conditional on y. | `ggplot(mtcars, aes(y = !!input$continuous_variable)) + geom_boxplot() + coord_flip()`                                                |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| shinyServer     | `shinyServer(objects...)`                                               | This generally involves creating functions that map user inputs to various kinds of output.                                                                                                                        | `shinyServer(function(input, output))`                                                                                                |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| renderPlot      | `renderPlot(objects...)`                                                | Renders a reactive plot that is suitable for assigning to an output slot.                                                                                                                                          | `renderPlot({p <- ggplot(mtcars, aes(x = !!input$continuous_variable))})`                                                             |
++-----------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+# Module 4: Final Project
+
+## Final Project Overview – Dashboard with Shiny using Census Data
+
+### OVERVIEW
+
+Now that you have been equipped with the knowledge and skills to create graphs and dashboards with R, you will have the opportunity in this final project to practice and apply it by using real-world census data.
+
+### FINAL PROJECT SCENARIO
+
+In this scenario, you will play the role of a data scientist who was recently hired by a company that provides career services to those with lower incomes. The marketing team has a small budget and wants your help to find out which demographics (age, education, gender, etc) to target advertising in the US. The data originates from the census database.
+
+Your task is to create an interactive dashboard with Shiny to explore census data to figure out what trends in different demographics you can find and tell the marketing team your findings.
+
+Your team has been using R-Studio lab on Coursera, which is a powerful and easy-to-use platform for data analysis and data science tasks. As a new team member, your team leader has assigned this task to you. You need to leverage your R skills to acquire the relevant datasets, as well as visualize them using RStudio.
+
+### INSTRUCTIONAL LABS
+
+To help you finish the final project, we have prepared an instructional lab that goes over how to:
+
+-   Launch RStudio on Coursera Labs       
+
+-   Download the skeleton server and UI code, as well as the dataset       
+
+-   Understand the starter code        
+
+-   Step through the tasks to create a dashboard using the UCI adult dataset (also known as census income dataset)       
+
+-   Share your final dashboard for peer-review
+
+### GRADING CRITERIA
+
+There are a total of 20 points for 7 tasks in this final project. Your final assignment will be graded by your peers who are also completing this assignment within the same session.  You need to submit the following item for peer review:
+
+-   A screenshot of the component of the dashboard for each task
+
+Your grade will be based on the following tasks:
+
+**Task 1:** Add application title in the UI (1 pt)
+
+**Task 2:** Add first fluidRow to select input for country in UI (2 pts)
+
+**Task 3:** Add second fluidRow to control how to plot the continuous variables in UI (2 pts)
+
+**Task 4:** Add third fluidRow to control how to plot the categorical variables in UI (2 pts)
+
+**Task 5:** Create logic to plot histogram or boxplot in server
+
+**- Task 5.1:** Show the boxplot of the “age” variable (2 pts)
+
+**- Task 5.2:** Show the histogram of the “hours_per_week" (2 pts)
+
+**Task 6:** Create logic to plot faceted bar chart or stacked bar chart in server
+
+**- Task 6.1:** Show the faceted unstacked bar chart for the “workclass” variable (3 pts)
+
+**- Task 6.2:** Show the stacked bar chart for the “education” variable (3 pts)
+
+**Task 7:** Share your final dashboard (including any optional changes to the themes or customizations to the graphs) (3 pts)
+
+## Congratulations and Next Steps
+
+Congratulations on completing this course. We hope you enjoyed it.
+
+As a next step, you can take the follow-on Capstone course to combine everything you have learned from the introduction to R course, the data analysis with R course, the SQL with R course, and this visualization with the R course. You will get to apply all your R knowledge on a real-world scenario capstone project and presentation: 
+
+-   [Data Science with R - Capstone Project](https://www.coursera.org/learn/data-science-with-r-capstone-project "Link to Data Science with R Capstone Project")
+
+Note: Successful completion of this course is a prerequisite for the Data Science with R Professional Certificate:
+
+-   [Applied Data Science with R Professional Certificate](https://www.coursera.org/specializations/applied-data-science-r "Link to professional certificate program")
+
+We also encourage you to leave your feedback and rate this course so that we can continue to improve the course content.
+
+Good luck!
+
+# Credits and Acknowledgments
+
+### Primary Instructors
+
+-   Gabriela de Queiroz
+
+-   Saishruthi Swaminathan
+
+-   Tiffany Zhu
+
+-   Yiwen Li
+
+### Other Contributors & Staff
+
+-   **Project Lead:** Rav Ahuja
+
+-   **Instructional Designer:** Jo Bader
+
+-   **Lab Authors:** Gabriela de Queiroz, Saishruthi Swaminathan, Tiffany Zhu, Yiwen Li
+
+-   **Technical Advisor:** Yan Luo
+
+### Production Team
+
+-   **Publishing:** Grace Barker, Rachael Jones
+
+-   **Project Coordinators:** Heather Vaughan
+
+-   **Narration:** Bella West
+
+-   **Video Production:** Lauren Hall, Hunter Bay, Alex Jones
+
+### Teaching Assistants and Forum Moderators
+
+-   Lavanya T S
+
+-   Malika Singla
+
+-   Lakshmi Holla
+
+-   Geetika Pal

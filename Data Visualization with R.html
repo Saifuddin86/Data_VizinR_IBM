@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="IBM">
+
+<title>Data Visualization with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Data Visualization with R_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Data Visualization with R_files/libs/quarto-html/quarto.js"></script>
+<script src="Data Visualization with R_files/libs/quarto-html/popper.min.js"></script>
+<script src="Data Visualization with R_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Data Visualization with R_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Data Visualization with R_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Data Visualization with R_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Data Visualization with R_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Data Visualization with R_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Data Visualization with R_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="Data Visualization with R_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="Data Visualization with R_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+
+<script src="Data Visualization with R_files/libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="Data Visualization with R_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="Data Visualization with R_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+<link href="Data Visualization with R_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+<link href="Data Visualization with R_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="Data Visualization with R_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="Data Visualization with R_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="Data Visualization with R_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+<script src="Data Visualization with R_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+
+<script src="Data Visualization with R_files/libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+
+<link href="Data Visualization with R_files/libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet">
+
+<link href="Data Visualization with R_files/libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet">
+
+<script src="Data Visualization with R_files/libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+
+<script src="Data Visualization with R_files/libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+
+<script src="Data Visualization with R_files/libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#course-introduction" id="toc-course-introduction" class="nav-link active" data-scroll-target="#course-introduction">Course Introduction</a></li>
+  <li><a href="#module-1-introduction-to-data-visualization" id="toc-module-1-introduction-to-data-visualization" class="nav-link" data-scroll-target="#module-1-introduction-to-data-visualization">Module 1: Introduction to Data Visualization</a>
+  <ul>
+  <li><a href="#summary-highlights" id="toc-summary-highlights" class="nav-link" data-scroll-target="#summary-highlights">Summary &amp; Highlights&nbsp;</a></li>
+  <li><a href="#bar-charts" id="toc-bar-charts" class="nav-link" data-scroll-target="#bar-charts">Bar Charts</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#pie-charts" id="toc-pie-charts" class="nav-link" data-scroll-target="#pie-charts">Pie Charts</a></li>
+  <li><a href="#summary-highlights-1" id="toc-summary-highlights-1" class="nav-link" data-scroll-target="#summary-highlights-1">Summary &amp; Highlights&nbsp;</a></li>
+  <li><a href="#cheatsheet-basic-plots" id="toc-cheatsheet-basic-plots" class="nav-link" data-scroll-target="#cheatsheet-basic-plots">CheatSheet: Basic Plots</a></li>
+  </ul></li>
+  <li><a href="#module-2-basic-plots-maps-and-customization" id="toc-module-2-basic-plots-maps-and-customization" class="nav-link" data-scroll-target="#module-2-basic-plots-maps-and-customization">Module 2: Basic plots, maps and customization</a>
+  <ul>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">Scatter plot</a></li>
+  <li><a href="#line-plots" id="toc-line-plots" class="nav-link" data-scroll-target="#line-plots">Line Plots</a></li>
+  <li><a href="#box-plots" id="toc-box-plots" class="nav-link" data-scroll-target="#box-plots">Box-plots</a></li>
+  <li><a href="#summary-highlight" id="toc-summary-highlight" class="nav-link" data-scroll-target="#summary-highlight">Summary &amp; Highlight</a></li>
+  <li><a href="#cheat-sheet-basic-plots" id="toc-cheat-sheet-basic-plots" class="nav-link" data-scroll-target="#cheat-sheet-basic-plots">Cheat Sheet: Basic Plots</a></li>
+  <li><a href="#customize-plots" id="toc-customize-plots" class="nav-link" data-scroll-target="#customize-plots">Customize Plots</a></li>
+  <li><a href="#custom-annotations" id="toc-custom-annotations" class="nav-link" data-scroll-target="#custom-annotations">Custom Annotations</a></li>
+  <li><a href="#themes-and-faceting" id="toc-themes-and-faceting" class="nav-link" data-scroll-target="#themes-and-faceting">Themes and Faceting</a></li>
+  <li><a href="#v2.2.3---maps-with-leaflet" id="toc-v2.2.3---maps-with-leaflet" class="nav-link" data-scroll-target="#v2.2.3---maps-with-leaflet">v2.2.3 - Maps with Leaflet</a></li>
+  <li><a href="#summary-highlights-2" id="toc-summary-highlights-2" class="nav-link" data-scroll-target="#summary-highlights-2">Summary &amp; Highlights&nbsp;</a></li>
+  <li><a href="#cheatsheet--basic-plots-and-customization-and-maps" id="toc-cheatsheet--basic-plots-and-customization-and-maps" class="nav-link" data-scroll-target="#cheatsheet--basic-plots-and-customization-and-maps">CheatSheet -Basic Plots and Customization and Maps</a></li>
+  <li><a href="#cheat-sheet---customization-and-maps-using-leaflet" id="toc-cheat-sheet---customization-and-maps-using-leaflet" class="nav-link" data-scroll-target="#cheat-sheet---customization-and-maps-using-leaflet">Cheat Sheet - Customization and Maps using Leaflet</a></li>
+  </ul></li>
+  <li><a href="#module-3-dashboard" id="toc-module-3-dashboard" class="nav-link" data-scroll-target="#module-3-dashboard">Module 3: Dashboard</a>
+  <ul>
+  <li><a href="#introduction-to-dashboards" id="toc-introduction-to-dashboards" class="nav-link" data-scroll-target="#introduction-to-dashboards">Introduction to Dashboards</a></li>
+  <li><a href="#summary-highlights-3" id="toc-summary-highlights-3" class="nav-link" data-scroll-target="#summary-highlights-3">Summary &amp; Highlights&nbsp;</a></li>
+  <li><a href="#cheatsheet---dashboard" id="toc-cheatsheet---dashboard" class="nav-link" data-scroll-target="#cheatsheet---dashboard">CheatSheet - DashBoard</a></li>
+  <li><a href="#explore-shiny-components" id="toc-explore-shiny-components" class="nav-link" data-scroll-target="#explore-shiny-components">Explore Shiny Components</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  <li><a href="#summary-highlights-4" id="toc-summary-highlights-4" class="nav-link" data-scroll-target="#summary-highlights-4">Summary &amp; Highlights</a></li>
+  <li><a href="#cheatsheet---dashboard-application" id="toc-cheatsheet---dashboard-application" class="nav-link" data-scroll-target="#cheatsheet---dashboard-application">CheatSheet - Dashboard Application</a></li>
+  </ul></li>
+  <li><a href="#module-4-final-project" id="toc-module-4-final-project" class="nav-link" data-scroll-target="#module-4-final-project">Module 4: Final Project</a>
+  <ul>
+  <li><a href="#final-project-overview-dashboard-with-shiny-using-census-data" id="toc-final-project-overview-dashboard-with-shiny-using-census-data" class="nav-link" data-scroll-target="#final-project-overview-dashboard-with-shiny-using-census-data">Final Project Overview – Dashboard with Shiny using Census Data</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">OVERVIEW</a></li>
+  <li><a href="#final-project-scenario" id="toc-final-project-scenario" class="nav-link" data-scroll-target="#final-project-scenario">FINAL PROJECT SCENARIO</a></li>
+  <li><a href="#instructional-labs" id="toc-instructional-labs" class="nav-link" data-scroll-target="#instructional-labs">INSTRUCTIONAL LABS</a></li>
+  <li><a href="#grading-criteria" id="toc-grading-criteria" class="nav-link" data-scroll-target="#grading-criteria">GRADING CRITERIA</a></li>
+  </ul></li>
+  <li><a href="#congratulations-and-next-steps" id="toc-congratulations-and-next-steps" class="nav-link" data-scroll-target="#congratulations-and-next-steps">Congratulations and Next Steps</a></li>
+  </ul></li>
+  <li><a href="#credits-and-acknowledgments" id="toc-credits-and-acknowledgments" class="nav-link" data-scroll-target="#credits-and-acknowledgments">Credits and Acknowledgments</a>
+  <ul>
+  <li><a href="#primary-instructors" id="toc-primary-instructors" class="nav-link" data-scroll-target="#primary-instructors">Primary Instructors</a></li>
+  <li><a href="#other-contributors-staff" id="toc-other-contributors-staff" class="nav-link" data-scroll-target="#other-contributors-staff">Other Contributors &amp; Staff</a></li>
+  <li><a href="#production-team" id="toc-production-team" class="nav-link" data-scroll-target="#production-team">Production Team</a></li>
+  <li><a href="#teaching-assistants-and-forum-moderators" id="toc-teaching-assistants-and-forum-moderators" class="nav-link" data-scroll-target="#teaching-assistants-and-forum-moderators">Teaching Assistants and Forum Moderators</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Visualization with R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>IBM </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="course-introduction" class="level1">
+<h1>Course Introduction</h1>
+<p>Welcome to the Data Visualization with R course.</p>
+<p>Data is everywhere and as datasets constantly are growing, they become harder to interpret in their raw forms. Data visualization helps you uncover patterns and discover insights from these seemingly complex big datasets. Being able to create simple, beautiful graphics is not only helpful to you to interpret data, but also allows you to share important insights with others. After completing this course, you will learn how to create several types of graphs, interactive dashboards, and reports.&nbsp;</p>
+<p>This course begins by understanding the importance of data visualization and going over the packages this course will use. Next, you will learn how to create basic charts and plots with ggplot2. Then, you will learn how to use Leaflet with location data to create maps. Finally, you will learn how to create dashboards with Shiny and reports with R markdown. To complete this course, watch each video, check your understanding by taking the quizzes, try the hands-on labs to solidify your learning, and lastly complete the final project to use all the skills you will learn.</p>
+</section>
+<section id="module-1-introduction-to-data-visualization" class="level1">
+<h1>Module 1: Introduction to Data Visualization</h1>
+<p>Data without a way to convey the story behind it to yourself or others is just numbers on a page. You can observe and tell the story of your data in a more impactful way through visualization. In this module, you will learn the basics of data visualization using R, including the fundamental components that are shared by all charts and plots, and how to bring those components to life using the ggplot2 package for R. You will also learn how to create three common chart types, including bar, histogram, and pie charts, from the qualitative and quantitative data.</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li><p>Classify charts into six main categories based on goals, aesthetics, and visual features</p></li>
+<li><p>Create bar charts using the ggplot2 package</p></li>
+<li><p>Create histogram charts using the ggplot2 package</p></li>
+<li><p>Create pie charts using the ggplot2 package</p></li>
+<li><p>Describe the components of a ggplot2 visualization</p></li>
+<li><p>Choose an appropriate graph to visualize data in R</p></li>
+</ul>
+<p><img src="clipboard-3258144016.png" class="img-fluid"></p>
+<p><img src="clipboard-2372118649.png" class="img-fluid"></p>
+<p><img src="clipboard-1988252257.png" class="img-fluid"></p>
+<p><img src="clipboard-2527263339.png" class="img-fluid"></p>
+<section id="summary-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlights">Summary &amp; Highlights&nbsp;</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<ul>
+<li><p>You can use data visualization&nbsp;to help you see <strong>trends</strong>, <strong>patterns</strong>, or <strong>anomalies</strong> that are not obvious when looking at raw data.&nbsp;</p></li>
+<li><p>The&nbsp;six main categories of charts&nbsp;are&nbsp;<strong>comparison</strong>, <strong>trend</strong>, <strong>part to whole</strong>, <strong>correlation</strong>, <strong>relationship</strong> and <strong>connection</strong>, and <strong>map</strong>.&nbsp;</p></li>
+<li><p>The R packages for visualization are <code>ggplot2</code> for most categories of charts&nbsp;and <code>Leaflet</code> for maps.&nbsp;&nbsp;</p></li>
+<li><p>The three components of a plot are-<strong>data</strong>(the dataset), <strong>aesthetics</strong>&nbsp;(such as the <em>color</em> or <em>position</em>), and <strong>geometry</strong> (including <em>points</em>, <em>lines</em>, <em>shapes</em>, etc.)&nbsp;</p></li>
+<li><p>While the <code>qplot()</code> function provides a quick and easy way to plot data, the <code>ggplot()</code> function provides the most flexibility.&nbsp;</p></li>
+</ul>
+</section>
+<section id="bar-charts" class="level2">
+<h2 class="anchored" data-anchor-id="bar-charts">Bar Charts</h2>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+</section>
+<section id="pie-charts" class="level2">
+<h2 class="anchored" data-anchor-id="pie-charts">Pie Charts</h2>
+</section>
+<section id="summary-highlights-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlights-1">Summary &amp; Highlights&nbsp;</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<ul>
+<li><p>You&nbsp;can&nbsp;create&nbsp;basic&nbsp;bar chart, histograms, pie charts, and more by&nbsp;using the&nbsp;<strong>qplot()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>To create more complex charts, use the&nbsp;<strong>ggplot()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>Qualitative data describes some data quality, data attribute, or data category, while quantitative data is data that is measured and described numerically.&nbsp;</p></li>
+<li><p>Using the parameters of the&nbsp;<strong>qplot()</strong>&nbsp;function, you can change a bar chart’s&nbsp;color, title,&nbsp;and axis labels.&nbsp;</p></li>
+<li><p>You can adjust the histogram chart’s bin width, outline color, axis limits and labels, fill color, and titles using the parameters of the&nbsp;<strong>qplot()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>Stacked bar charts and pie charts both show the distribution of the different categories in categorical variables.&nbsp;</p></li>
+<li><p>Pie charts are&nbsp;stacked bar charts&nbsp;that are transformed to polar coordinates (a circle) using the&nbsp;<strong>coord_polar()</strong>&nbsp;function.</p></li>
+</ul>
+</section>
+<section id="cheatsheet-basic-plots" class="level2">
+<h2 class="anchored" data-anchor-id="cheatsheet-basic-plots">CheatSheet: Basic Plots</h2>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 34%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>library(ggplot2)</td>
+<td><code>library(ggplot2)</code></td>
+<td><code>ggplot2</code> is a system for declaratively creating graphics, based on The Grammar of Graphics.</td>
+<td><p><code>library(ggplot2)</code></p>
+<p><code>p &lt;- qplot(hp, mpg, data=mtcars, shape=am, color=am,facets=gear~cyl, main=”Scatterplots of MPG vs. Horsepower”,xlab=”Horsepower”, ylab=”Miles per Gallon”)</code></p></td>
+</tr>
+<tr class="even">
+<td>ggplot()</td>
+<td><code>ggplot()</code></td>
+<td><code>ggplot()</code> Initializes a ggplot object.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))</code></td>
+</tr>
+<tr class="odd">
+<td>geom_area()</td>
+<td><code>geom_area()</code></td>
+<td><code>geom_area()</code> is for plotting area graphs,</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_area()</code></td>
+</tr>
+<tr class="even">
+<td>geom_line()</td>
+<td><code>geom_line()</code></td>
+<td><code>geom_line()</code> is for plotting line graphs,</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_line()</code></td>
+</tr>
+<tr class="odd">
+<td>geom_histogram()</td>
+<td><code>geom_histogram()</code></td>
+<td><code>geom_histogram()</code> is for plotting histogram.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_histogram()</code></td>
+</tr>
+<tr class="even">
+<td>geom_bar()</td>
+<td><code>geom_bar()</code></td>
+<td><code>geom_bar()</code> is for plotting bar graphs.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_bar()</code></td>
+</tr>
+<tr class="odd">
+<td>geom_map()</td>
+<td><code>geom_map()</code></td>
+<td><code>geom_map()</code> is for plotting maps.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_map()</code></td>
+</tr>
+<tr class="even">
+<td>qplot()</td>
+<td><code>qplot()</code></td>
+<td><code>qplot()</code> You can use this quick plot function to create simple plots.</td>
+<td><code>qplot(data,x=feature1,y=feature2,geom='point')</code></td>
+</tr>
+<tr class="odd">
+<td>coord_polar()</td>
+<td><code>coord_polar()</code></td>
+<td><code>coord_polar()</code>is used  to produce a pie chart, which is just a stacked bar plot in polar coordinates</td>
+<td><code>coord_polar()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-2-basic-plots-maps-and-customization" class="level1">
+<h1>Module 2: Basic plots, maps and customization</h1>
+<p>In this module, you will take your data visualization skills to the next level! You will learn how to create three plot types, including scatter plots, line, plots, and box plots, using the ggplot2 library and then customize the visualizations using annotations and customized axis titles and text labels. You will also learn about faceting, a way to visualize each level of a discrete or categorical variable, and different ways to work with themes. Finally, you will learn about a unique chart type called a map that you can create using geolocation data and the Leaflet library.</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li><p>Create scatter plots using the ggplot2 library</p></li>
+<li><p>Create line graphs using the ggplot2 library</p></li>
+<li><p>Create box plots using the ggplot2 library</p></li>
+<li><p>Generate customized maps using the Leaflet library</p></li>
+<li><p>Design customized plots using faceting, themes, and the ggthemes package</p></li>
+<li><p>Design customized plots using annotations, axis titles, and text labels</p></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Loading all packages in tidyverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<section id="scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot">Scatter plot</h2>
+<p><strong>Creating a quick scatter plot using <code>ggplot</code></strong> <strong>package</strong></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>wt,<span class="at">y=</span>mpg,<span class="at">data =</span> mtcars,<span class="at">color=</span><span class="fu">factor</span>(cyl))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">19</span>)<span class="co"># Quick plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Creating a conventional scatter plot using <code>ggplot</code></strong> <strong>package</strong></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(wt,mpg,<span class="at">color=</span><span class="fu">factor</span>(cyl)))<span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">19</span>)<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">"Cylinder"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Weight"</span>,<span class="at">y=</span><span class="st">"Miles per Gallon"</span>,<span class="at">title =</span> <span class="st">"Scatter plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="line-plots" class="level2">
+<h2 class="anchored" data-anchor-id="line-plots">Line Plots</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EU Stock Markets data sets</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(EuStockMarkets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>         DAX    SMI    CAC   FTSE
+[1,] 1628.75 1678.1 1772.8 2443.6
+[2,] 1613.63 1688.5 1750.5 2460.2
+[3,] 1606.51 1678.6 1718.0 2448.2
+[4,] 1621.04 1684.1 1708.1 2470.4
+[5,] 1618.16 1686.6 1723.1 2484.7
+[6,] 1610.61 1671.6 1714.3 2466.8</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>EuStockDF<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(EuStockMarkets)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>EuStockDF<span class="sc">$</span>Date<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">time</span>(EuStockMarkets))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(EuStockDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      DAX    SMI    CAC   FTSE     Date
+1 1628.75 1678.1 1772.8 2443.6 1991.496
+2 1613.63 1688.5 1750.5 2460.2 1991.500
+3 1606.51 1678.6 1718.0 2448.2 1991.504
+4 1621.04 1684.1 1708.1 2470.4 1991.508
+5 1618.16 1686.6 1723.1 2484.7 1991.512
+6 1610.61 1671.6 1714.3 2466.8 1991.515</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic line plot</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockDF, <span class="fu">aes</span>(<span class="at">x=</span>Date,<span class="at">y=</span>SMI))<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Closing price of Switzerland (SMI) stock index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple line plot</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockDF, <span class="fu">aes</span>(<span class="at">x=</span>Date))<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>DAX),<span class="at">color=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>SMI),<span class="at">color=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>CAC),<span class="at">color=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>FTSE),<span class="at">color=</span><span class="dv">5</span>) <span class="co"># NOT Useful</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Lets make data <code>tidy</code></strong></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(EuStockMarkets) <span class="co">#Messy data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>         DAX    SMI    CAC   FTSE
+[1,] 1628.75 1678.1 1772.8 2443.6
+[2,] 1613.63 1688.5 1750.5 2460.2
+[3,] 1606.51 1678.6 1718.0 2448.2
+[4,] 1621.04 1684.1 1708.1 2470.4
+[5,] 1618.16 1686.6 1723.1 2484.7
+[6,] 1610.61 1671.6 1714.3 2466.8</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(EuStockMarkets) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Date=</span>index,<span class="at">Stock_index=</span>series,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Price=</span>value)<span class="ot">-&gt;</span>tidy_stocks</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tidy_stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+   Date Stock_index Price
+  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+1 1991. DAX         1629.
+2 1991. SMI         1678.
+3 1991. CAC         1773.
+4 1991. FTSE        2444.
+5 1992. DAX         1614.
+6 1992. SMI         1688.</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tidy_stocks,<span class="fu">aes</span>(<span class="at">x=</span>Date,<span class="at">y=</span>Price))<span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span>Stock_index))<span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">"Stock index"</span>)<span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plots" class="level2">
+<h2 class="anchored" data-anchor-id="box-plots">Box-plots</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="fu">factor</span>(cyl),mpg,<span class="at">data =</span> mtcars,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span> <span class="st">"boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(cyl),<span class="at">y=</span>mpg))<span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Number of cylinder"</span>,<span class="at">y=</span><span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Median MPG is the lowest for 8-cylynder cars and highest for 4-cylinder cars "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplotly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-4833b753d3f5051cc392" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4833b753d3f5051cc392">{"x":{"data":[{"x":[2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"y":[21,21,17.800000000000001,21.399999999999999,18.100000000000001,19.199999999999999,19.699999999999999,22.800000000000001,22.800000000000001,24.399999999999999,21.5,30.399999999999999,33.899999999999999,26,30.399999999999999,32.399999999999999,21.399999999999999,27.300000000000001,18.699999999999999,17.300000000000001,14.300000000000001,14.699999999999999,10.4,16.399999999999999,19.199999999999999,15.199999999999999,15.199999999999999,10.4,15.800000000000001,15.5,15,13.300000000000001],"hoverinfo":"y","type":"box","fillcolor":"rgba(255,255,255,1)","marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(51,51,51,1)","width":1.8897637795275593},"showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":26.228310502283104,"r":7.3059360730593621,"b":40.182648401826491,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["4","6","8"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["4","6","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Number of cylinder","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[9.2249999999999996,35.074999999999996],"tickmode":"array","ticktext":["10","15","20","25","30","35"],"tickvals":[10,15,20,25,30,35],"categoryorder":"array","categoryarray":["10","15","20","25","30","35"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Miles per Gallon","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4fa4268593":{"x":{},"y":{},"type":"box"}},"cur_data":"4fa4268593","visdat":{"4fa4268593":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="summary-highlight" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlight">Summary &amp; Highlight</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<ul>
+<li><p>A scatter plot shows how two variables relate to each other across the points of the dataset.&nbsp;</p></li>
+<li><p>Create simple scatter plots using the&nbsp;<strong>qplot()</strong> function or more complex scatter plots using the&nbsp;<strong>ggplot()</strong>&nbsp;and&nbsp;<strong>geom_point()</strong>&nbsp;functions&nbsp;in the gggplot2 library.&nbsp;</p></li>
+<li><p>Change&nbsp;the aesthetics of a scatter plot, including&nbsp;the shapes and colors of the individual points, by using the&nbsp;<strong>geom_point()</strong>&nbsp;and&nbsp;<strong>aes()</strong>&nbsp;functions.&nbsp;</p></li>
+<li><p>Line plots visualize time series data.&nbsp;</p></li>
+<li><p>Create a line plot by specifying the x and y axis in&nbsp;<strong>aes()</strong>, and using the&nbsp;<strong>geom_line()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>Modify the x and y axis labels&nbsp;using the&nbsp;<strong>labs()</strong>&nbsp;function.&nbsp;&nbsp;</p></li>
+<li><p>Change the color of the lines in a line chart by setting the color property of the&nbsp;<strong>aes()</strong> function.&nbsp;</p></li>
+<li><p>Create multiple line plots&nbsp;by&nbsp;adding&nbsp;<strong>geom_line()</strong>&nbsp;functions.&nbsp;</p></li>
+<li><p>You can create multiple line plots with “messy” data by first&nbsp;tidying the dataset and plotting it with a single&nbsp;<strong>geom_line()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>A box plot summarizes the distribution of sorted numerical data.&nbsp;</p></li>
+<li><p>The&nbsp;Plotly&nbsp;package helps to create interactive graphs and provides online graphing, analytics, and statistics tools.&nbsp;</p></li>
+<li><p>Create simple box plots using the&nbsp;<strong>qplot()</strong>&nbsp;function, or more customizable box plots using the&nbsp;<strong>ggplot()</strong>&nbsp;function and add interactivity using the&nbsp;<strong>ggplotly()</strong> function.</p></li>
+</ul>
+</section>
+<section id="cheat-sheet-basic-plots" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet-basic-plots">Cheat Sheet: Basic Plots</h2>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 34%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>library(ggplot2)</td>
+<td><code>library(ggplot2)</code></td>
+<td><code>ggplot2</code> is a system for declaratively creating graphics, based on The Grammar of Graphics.</td>
+<td><p><code>library(ggplot2)</code></p>
+<p><code>p &lt;- qplot(hp, mpg, data=mtcars, shape=am, color=am,facets=gear~cyl, main=”Scatterplots of MPG vs. Horsepower”,xlab=”Horsepower”, ylab=”Miles per Gallon”)</code></p></td>
+</tr>
+<tr class="even">
+<td>ggplot()</td>
+<td><code>ggplot()</code></td>
+<td><code>ggplot()</code> Initializes a ggplot object.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))</code></td>
+</tr>
+<tr class="odd">
+<td>geom_area()</td>
+<td><code>geom_area()</code></td>
+<td><code>geom_area()</code> is for plotting area graphs,</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_area()</code></td>
+</tr>
+<tr class="even">
+<td>geom_line()</td>
+<td><code>geom_line()</code></td>
+<td><code>geom_line()</code> is for plotting line graphs,</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_line()</code></td>
+</tr>
+<tr class="odd">
+<td>geom_histogram()</td>
+<td><code>geom_histogram()</code></td>
+<td><code>geom_histogram()</code> is for plotting histogram.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_histogram()</code></td>
+</tr>
+<tr class="even">
+<td>geom_bar()</td>
+<td><code>geom_bar()</code></td>
+<td><code>geom_bar()</code> is for plotting bar graphs.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_bar()</code></td>
+</tr>
+<tr class="odd">
+<td>geom_map()</td>
+<td><code>geom_map()</code></td>
+<td><code>geom_map()</code> is for plotting maps.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_map()</code></td>
+</tr>
+<tr class="even">
+<td>qplot()</td>
+<td><code>qplot()</code></td>
+<td><code>qplot()</code> You can use this quick plot function to create simple plots.</td>
+<td><code>qplot(data,x=feature1,y=feature2,geom='point')</code></td>
+</tr>
+<tr class="odd">
+<td>coord_polar()</td>
+<td><code>coord_polar()</code></td>
+<td><code>coord_polar()</code>is used  to produce a pie chart, which is just a stacked bar plot in polar coordinates</td>
+<td><code>coord_polar()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="customize-plots" class="level2">
+<h2 class="anchored" data-anchor-id="customize-plots">Customize Plots</h2>
+<ul>
+<li>Labels: <code>labs()</code></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Miles/(US) gallon"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mileage by weight and cylinders"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Text labels: <code>geom_text()</code></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(mtcars)),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">hjust =</span> <span class="st">"inward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="custom-annotations">Custom Annotations</h2>
+<p>You can use the following functions to emphasize important elements of your plot:</p>
+<ul>
+<li><p>geom_vline(xintercept)</p></li>
+<li><p>geom_hline(yintercept)</p></li>
+<li><p>geom_abline(slope, intercept)</p></li>
+<li><p>geom_rect()</p></li>
+<li><p>annotate(geom)</p></li>
+</ul>
+<p><strong>Custom Annotations-Example</strong></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Median MPG</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19.2</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Miles/(US) gallon"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Miles/Gallon"</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fl">19.2</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Median = 19.2"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">21</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">7</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="themes-and-faceting" class="level2">
+<h2 class="anchored" data-anchor-id="themes-and-faceting">Themes and Faceting</h2>
+<ul>
+<li>Faceting</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(<span class="at">x=</span>mpg))<span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Themes</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(cyl))<span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()<span class="ot">-&gt;</span>p</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and so on.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There are also lots of functions within <code>theme()</code>.</p>
+<p><img src="clipboard-141919988.png" class="img-fluid"></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(cyl)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"green"</span>, <span class="at">fill =</span> <span class="st">"gray"</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"blue"</span>),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>More themes in <code>ggthemes</code></strong> package</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes) <span class="co"># For different ggplot themes</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(wt,mpg,<span class="at">color=</span><span class="fu">factor</span>(cyl)))<span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">19</span>)<span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">"Cylinder"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Weight"</span>,<span class="at">y=</span><span class="st">"Miles per Gallon"</span>,<span class="at">title =</span> <span class="st">"Scatter plot"</span>)<span class="ot">-&gt;</span>g  </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>g<span class="sc">+</span><span class="fu">theme_economist</span>()<span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g<span class="sc">+</span><span class="fu">theme_clean</span>()<span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data-Visualization-with-R_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="v2.2.3---maps-with-leaflet" class="level2">
+<h2 class="anchored" data-anchor-id="v2.2.3---maps-with-leaflet">v2.2.3 - Maps with Leaflet</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>map<span class="ot">&lt;-</span><span class="fu">leaflet</span>() </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>map <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng=</span><span class="sc">-</span><span class="fl">73.9851</span>,<span class="at">lat =</span> <span class="fl">40.7589</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">popup =</span> <span class="st">"Times Square"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-6a40d878e28ad8b4fee9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-6a40d878e28ad8b4fee9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[40.7589,-73.9851,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Times Square",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.7589,40.7589],"lng":[-73.9851,-73.9851]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">"OpenStreetMap.Mapnik"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="fl">2.2945</span>, <span class="at">lat =</span> <span class="fl">48.8584</span>, <span class="at">popup =</span> <span class="st">"Eiffel Tower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-202d01475c4cde690d57" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-202d01475c4cde690d57">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[48.8584,2.2945,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Eiffel Tower",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[48.8584,48.8584],"lng":[2.2945,2.2945]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><strong>Creating maps from data</strong></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(quakes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     lat   long depth mag stations
+1 -20.42 181.62   562 4.8       41
+2 -20.62 181.03   650 4.2       15
+3 -26.00 184.10    42 5.4       43
+4 -17.97 181.66   626 4.1       19
+5 -20.42 181.96   649 4.0       11
+6 -19.68 184.31   195 4.0       12</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(quakes) <span class="sc">%&gt;%</span> <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> quakes<span class="sc">$</span>long,<span class="at">lat=</span>quakes<span class="sc">$</span>lat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-8125b5270ec70d22f5e6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8125b5270ec70d22f5e6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[-20.42,-20.62,-26,-17.97,-20.42,-19.68,-11.7,-28.11,-28.74,-17.47,-21.44,-12.26,-18.54,-21,-20.7,-15.94,-13.64,-17.83,-23.5,-22.63,-20.84,-10.98,-23.3,-30.2,-19.66,-17.94,-14.72,-16.46,-20.97,-19.84,-22.58,-16.32,-15.55,-23.55,-16.3,-25.82,-18.73,-17.64,-17.66,-18.82,-37.37,-15.31,-24.97,-15.49,-19.23,-30.1,-26.4,-11.77,-24.12,-18.97,-18.75,-19.26,-22.75,-21.37,-20.1,-19.85,-22.7,-22.06,-17.8,-24.2,-20.69,-21.16,-13.82,-11.49,-20.68,-17.1,-20.14,-21.96,-20.42,-15.46,-15.31,-19.86,-11.55,-23.74,-17.7,-23.54,-19.21,-12.11,-21.81,-28.98,-34.02,-23.84,-19.57,-20.12,-17.7,-19.66,-21.5,-23.64,-15.43,-15.41,-15.48,-13.36,-20.64,-19.72,-15.44,-19.73,-27.24,-18.16,-13.66,-24.57,-16.98,-26.2,-21.88,-33,-21.33,-19.44,-34.89,-20.24,-22.55,-36.95,-15.75,-16.85,-19.06,-26.11,-26.2,-26.13,-13.66,-13.47,-14.6,-18.96,-14.65,-19.9,-22.05,-19.22,-31.24,-17.93,-19.3,-26.53,-27.72,-19.19,-17.43,-17.05,-19.52,-23.71,-21.3,-16.24,-16.14,-23.95,-25.2,-18.84,-12.66,-20.65,-13.23,-29.91,-14.31,-20.1,-17.8,-21.27,-23.58,-17.9,-23.34,-15.56,-23.83,-11.8,-15.54,-20.65,-11.75,-24.81,-20.9,-11.34,-17.98,-24.34,-13.86,-35.56,-35.48,-34.2,-26,-19.89,-23.43,-18.89,-17.82,-25.68,-20.2,-15.2,-15.03,-32.22,-22.64,-17.42,-17.84,-15.02,-18.04,-24.6,-19.88,-20.3,-20.45,-17.67,-22.3,-19.85,-24.27,-15.85,-20.02,-18.56,-17.87,-24.08,-32.2,-20.36,-23.85,-24,-20.41,-17.72,-19.67,-17.7,-16.23,-26.72,-12.95,-21.97,-21.96,-20.32,-30.28,-20.2,-30.66,-16.17,-28.25,-20.47,-23.55,-20.94,-26.67,-18.13,-20.21,-18.31,-16.52,-22.36,-22.43,-20.37,-23.77,-13.65,-21.55,-16.24,-23.73,-22.34,-19.4,-24.64,-16,-19.62,-23.84,-23.54,-28.23,-21.68,-13.44,-24.96,-20.08,-24.36,-14.7,-18.2,-16.65,-18.11,-17.95,-15.5,-23.36,-19.15,-10.97,-14.85,-17.8,-22.5,-29.1,-20.32,-16.09,-19.18,-23.81,-23.79,-19.02,-20.9,-19.06,-17.88,-19.41,-26.17,-14.95,-18.73,-20.21,-21.29,-19.76,-22.09,-23.8,-20.16,-22.13,-17.44,-23.33,-24.78,-22,-19.13,-30.72,-22.32,-16.45,-17.7,-17.95,-24.4,-19.3,-21.13,-18.07,-20.6,-18.48,-13.34,-20.92,-25.31,-15.24,-16.4,-24.57,-17.94,-30.64,-18.64,-13.09,-19.68,-16.44,-21.09,-14.99,-23.3,-17.68,-22,-21.38,-32.62,-13.05,-12.93,-18.6,-21.34,-21.48,-17.4,-17.32,-18.77,-26.16,-12.59,-14.82,-21.79,-19.83,-29.5,-12.49,-26.1,-21.04,-10.78,-20.76,-11.41,-19.1,-23.91,-27.33,-12.25,-23.49,-27.18,-25.8,-27.19,-27.27,-27.1,-27.22,-27.38,-27.27,-27.54,-27.2,-27.71,-27.6,-27.38,-21.54,-27.21,-28.96,-12.01,-17.46,-30.17,-27.27,-17.79,-22.19,-17.1,-27.18,-11.64,-17.98,-16.9,-21.98,-32.14,-18.8,-26.78,-20.43,-18.3,-15.83,-23.44,-23.73,-19.89,-17.59,-19.77,-20.31,-15.33,-18.2,-15.36,-15.29,-15.36,-16.24,-13.47,-25.5,-14.32,-20.04,-28.83,-17.82,-27.23,-10.72,-27,-20.36,-27.17,-20.94,-17.46,-21.04,-23.7,-17.72,-15.87,-17.84,-13.45,-30.8,-11.63,-30.4,-26.18,-15.7,-17.95,-20.51,-15.36,-23.61,-33.2,-17.68,-22.24,-20.07,-25.04,-21.5,-14.28,-14.43,-32.7,-34.1,-19.7,-24.19,-26.6,-17.04,-22.1,-32.6,-33,-20.58,-20.61,-19.47,-17.47,-18.4,-23.33,-18.55,-26.16,-21.8,-27.63,-18.89,-20.3,-20.56,-16.1,-12.66,-21.05,-17.97,-19.83,-22.55,-22.28,-15.72,-20.85,-21.11,-25.31,-26.46,-24.09,-16.96,-23.19,-20.81,-15.03,-18.06,-19,-23.53,-18.18,-15.66,-18,-18.08,-18.05,-29.9,-20.9,-15.61,-16.03,-17.68,-31.94,-19.14,-18,-16.95,-10.79,-20.83,-32.9,-37.93,-29.09,-23.56,-19.6,-21.39,-14.85,-22.7,-32.42,-17.9,-23.58,-34.4,-17.61,-21.07,-13.84,-30.24,-18.49,-23.45,-16.04,-17.14,-22.54,-15.9,-30.04,-24.03,-18.89,-16.51,-20.1,-21.06,-13.07,-23.46,-19.41,-11.81,-11.76,-12.08,-25.59,-26.54,-20.9,-16.99,-23.46,-17.81,-15.17,-11.67,-20.75,-19.5,-26.18,-20.66,-19.22,-24.68,-15.43,-32.45,-21.31,-15.44,-13.26,-15.26,-33.57,-15.77,-15.79,-21,-16.28,-23.28,-16.1,-17.7,-15.96,-15.95,-17.56,-15.9,-15.29,-15.86,-16.2,-15.71,-16.45,-11.54,-19.61,-15.61,-21.16,-20.65,-20.33,-15.08,-23.28,-23.44,-23.12,-23.65,-22.91,-22.06,-13.56,-17.99,-23.92,-30.69,-21.92,-25.04,-19.92,-27.75,-17.71,-19.6,-34.68,-14.46,-18.85,-17.02,-20.41,-18.18,-16.49,-17.74,-20.49,-18.51,-27.28,-15.9,-20.57,-11.25,-20.04,-20.89,-16.62,-20.09,-24.96,-20.95,-23.31,-20.95,-21.58,-13.62,-12.72,-21.79,-20.48,-12.84,-17.02,-23.89,-23.07,-27.98,-28.1,-21.24,-21.24,-19.89,-32.82,-22,-21.57,-24.5,-33.03,-30.09,-22.75,-17.99,-19.6,-15.65,-17.78,-22.04,-20.06,-18.07,-12.85,-33.29,-34.63,-24.18,-23.78,-22.37,-23.97,-34.12,-25.25,-22.87,-18.48,-21.46,-28.56,-28.56,-21.3,-20.08,-18.82,-19.51,-12.05,-17.4,-23.93,-21.23,-16.23,-28.15,-20.81,-20.72,-23.29,-38.46,-15.48,-37.03,-20.48,-18.12,-18.17,-11.4,-23.1,-14.28,-22.87,-17.59,-27.6,-17.94,-17.88,-30.01,-19.19,-18.14,-23.46,-18.44,-18.21,-18.26,-15.85,-23.82,-18.6,-17.8,-10.78,-18.12,-19.34,-15.34,-24.97,-15.97,-23.47,-23.11,-20.54,-18.92,-20.16,-25.48,-18.19,-15.35,-18.69,-18.89,-17.61,-20.93,-17.6,-17.96,-18.8,-20.61,-20.74,-25.23,-23.9,-18.07,-15.43,-14.3,-18.04,-13.9,-17.64,-17.98,-25,-19.45,-16.11,-23.73,-17.74,-21.56,-20.97,-15.45,-15.93,-21.47,-21.44,-22.16,-13.36,-21.22,-26.1,-18.35,-17.2,-22.42,-17.91,-26.53,-26.5,-16.31,-18.76,-17.1,-19.28,-23.5,-21.26,-17.97,-26.02,-30.3,-24.89,-14.57,-15.4,-22.06,-25.14,-20.3,-25.28,-20.63,-19.02,-22.1,-38.59,-19.3,-31.03,-30.51,-22.55,-22.14,-25.6,-18.04,-21.29,-21.08,-20.64,-24.41,-12.16,-17.1,-21.13,-12.34,-16.43,-20.7,-21.18,-17.78,-21.57,-13.7,-12.27,-19.1,-19.85,-11.37,-20.7,-20.24,-16.4,-19.6,-21.63,-21.6,-21.77,-21.8,-21.05,-10.8,-17.9,-22.26,-22.33,-24.04,-20.4,-15,-27.87,-14.12,-23.61,-21.56,-21.19,-18.07,-26,-20.21,-28,-20.74,-31.8,-18.91,-20.45,-22.9,-18.11,-23.8,-23.42,-23.2,-12.93,-21.14,-19.13,-21.08,-20.07,-20.9,-25.04,-21.85,-19.34,-15.83,-23.73,-18.1,-22.12,-15.39,-16.21,-21.75,-22.1,-24.97,-19.36,-22.14,-21.48,-18.54,-21.62,-13.4,-15.5,-15.67,-21.78,-30.63,-15.7,-19.2,-19.7,-19.4,-15.85,-17.38,-24.33,-20.89,-18.97,-17.99,-15.8,-25.42,-21.6,-26.06,-17.56,-25.63,-25.46,-22.23,-21.55,-15.18,-13.79,-15.18,-18.78,-17.9,-18.5,-14.82,-15.65,-30.01,-13.16,-21.03,-21.4,-17.93,-20.87,-12.01,-19.1,-22.85,-17.08,-21.14,-12.23,-20.91,-11.38,-11.02,-22.09,-17.8,-18.94,-18.85,-21.91,-22.03,-18.1,-18.4,-21.2,-12,-11.7,-26.72,-24.39,-19.64,-21.35,-22.82,-38.28,-12.57,-22.24,-13.8,-21.07,-17.74,-23.87,-21.29,-22.2,-15.24,-17.82,-32.14,-19.3,-33.09,-20.18,-17.46,-17.44,-24.71,-21.53,-19.17,-28.05,-23.39,-22.33,-15.28,-20.27,-10.96,-21.52,-19.57,-23.08,-25.06,-17.85,-15.99,-20.56,-17.98,-18.4,-27.64,-20.99,-14.86,-29.33,-25.81,-14.1,-17.63,-23.47,-23.92,-20.88,-20.25,-19.33,-18.14,-22.41,-20.77,-17.95,-20.83,-27.84,-19.94,-23.6,-23.7,-30.39,-18.98,-27.89,-23.5,-23.73,-17.93,-35.94,-18.68,-23.47,-23.49,-23.85,-27.08,-20.88,-20.97,-21.71,-23.9,-15.78,-12.57,-19.69,-22.04,-17.99,-23.5,-21.4,-15.86,-23.95,-25.79,-23.75,-24.1,-18.56,-23.3,-17.03,-20.77,-28.1,-18.83,-23,-20.82,-22.95,-28.22,-27.99,-15.54,-12.37,-22.33,-22.7,-17.86,-16,-20.73,-15.45,-20.05,-17.95,-17.7,-25.93,-12.28,-20.13,-17.4,-21.59],[181.62,181.03,184.1,181.66,181.96,184.31,166.1,181.93,181.74,179.59,180.69,167,182.11,181.66,169.92,184.95,165.96,181.5,179.78,180.31,181.16,166.32,180.16,182,180.28,181.49,167.51,180.79,181.47,182.37,179.24,166.74,185.05,180.8,186,179.33,169.23,181.28,181.4,169.33,176.78,186.1,179.82,186.04,169.41,182.3,181.7,166.32,180.08,185.25,182.35,184.42,173.2,180.67,182.16,182.13,181,180.6,181.35,179.2,181.55,182.4,172.38,166.22,181.41,184.93,181.6,179.62,181.86,187.81,185.8,184.35,166.2,179.99,181.23,180.04,184.7,167.06,181.71,181.11,180.21,180.99,182.38,183.4,181.7,184.31,170.5,179.96,186.3,186.44,167.53,167.06,182.02,169.71,185.26,182.4,181.11,183.41,166.54,179.92,185.61,178.41,180.39,181.6,180.69,183.5,180.6,169.49,185.9,177.81,185.23,182.31,182.45,178.3,178.35,178.31,172.23,172.29,167.4,169.48,166.97,178.9,180.4,182.43,180.6,167.89,183.84,178.57,181.7,183.51,185.43,181.22,168.98,180.3,180.82,168.02,187.32,182.8,182.6,184.16,169.46,181.4,167.1,181.43,173.5,184.4,185.17,173.49,180.17,181.5,184.5,167.62,182.56,165.8,167.68,181.32,166.07,180,169.84,166.24,180.5,179.52,167.16,180.2,179.9,179.43,182.12,183.84,180,169.42,181.83,180.34,180.9,184.68,182.29,180.2,180.64,185.16,181.48,184.24,181.75,183.5,184.3,183,181.85,187.09,181.9,181.85,179.88,185.13,184.09,169.31,182,179.5,179.61,181.19,182.53,182.75,181.74,180.3,182.18,182.2,183.59,183.35,169.09,182.32,180.54,181.69,180.62,182.3,180.13,184.1,181.71,185.68,180.27,181.58,182.4,181.52,183.83,182.39,185.7,171.65,184.48,182.1,180.16,166.66,182.9,185.75,182.53,171.52,180.94,180.81,182.82,185.35,180.13,179.93,182.68,180.63,166.53,180.22,182.74,182.84,166,183.68,185.51,181.67,181.65,186.9,180.01,169.5,166.26,167.24,181.38,170.4,182.1,180.88,184.89,169.33,179.36,179.89,184.23,181.51,169.01,181.47,183.05,184.2,167.24,168.8,182.37,180.85,181.41,180.38,179.9,181.99,180.38,181.4,180.18,179.22,180.52,182.51,180.1,180.54,177.77,185,184.68,179.85,180.6,185.32,181.57,182.28,181.49,166.2,181.5,179.69,186.21,185.86,178.4,181.51,181.2,169.32,169.28,184.14,185.74,181.38,171.39,179.7,181.36,180.53,181.39,181.5,169.58,169.63,181.91,181.41,183.78,181.02,181.03,169.24,179.5,167.1,167.32,183.48,182.04,182.31,166.36,182.3,181.2,165.77,185.77,166.24,183.87,180,182.6,166.6,179.07,182.18,182.1,182.18,182.38,182.18,182.28,181.7,182.5,182.5,182.39,182.47,182.4,182.39,185.48,182.43,182.61,166.29,181.32,182.02,182.36,181.32,171.4,182.68,182.53,166.47,181.58,185.72,179.6,179.9,169.21,183.61,182.37,183.2,182.51,182.93,179.99,184.08,181.09,181.4,184.06,186.75,181.6,186.66,186.42,186.71,167.95,167.14,182.82,167.33,182.01,181.66,181.49,180.98,165.99,183.88,186.16,183.68,181.26,181.9,181.2,179.6,181.42,188.13,181.3,170.3,182.16,166.14,181.4,178.59,184.5,181.5,182.3,167.51,180.23,181.6,186.8,184.56,169.14,180.1,185.2,167.26,167.26,181.7,181.8,186.2,180.38,182.77,186.8,179.71,180.9,182.4,181.24,182.6,169.15,180.96,183.4,180.26,182.23,178.47,183.2,182.93,169.48,182.3,182.04,185.32,166.37,184.68,168.52,182.54,183.81,183.52,185.64,181.59,181.5,180.15,182.5,179.68,167.7,182.8,184.7,167.32,181.59,185.6,179.99,180.63,186.8,180.62,180.7,180.86,181.16,181.9,167.5,185.43,181.11,180.57,184.36,185.48,185.94,166.06,185.9,181.6,177.47,183.2,180.23,185.2,180.68,184.87,183.3,181.21,181.3,183.4,180.5,181.2,181.13,170.62,181.63,169.04,180.23,183.54,185.31,172.91,185.3,181.2,180.22,184.46,187.1,186.3,183.81,166.87,180.09,182.3,165.98,165.96,165.76,180.02,183.63,184.28,187,180.17,181.82,187.2,166.02,184.52,186.9,179.79,185.77,182.54,183.33,167.38,181.15,180.84,167.18,167.01,183.13,180.8,167.01,166.83,183.2,166.94,184.6,167.25,181.31,166.69,167.34,181.59,167.42,166.9,166.85,166.8,166.91,167.54,166.18,181.91,187.15,181.41,182.22,168.71,166.62,184.61,184.6,184.42,184.46,183.95,180.47,166.49,181.57,184.47,182.1,182.8,180.97,183.91,182.26,181.18,183.84,179.82,167.26,187.55,182.41,186.51,182.04,187.8,181.31,181.69,182.64,183.4,167.16,181.33,166.36,181.87,181.25,186.74,168.75,179.87,181.42,179.27,181.06,181.9,167.15,166.28,185,169.76,166.78,182.93,182.39,184.03,181.96,182.25,180.81,180.86,174.46,179.8,185.5,185.62,180.92,180.2,182.4,170.99,168.98,181.87,186.26,181.53,184.91,168.69,181.54,165.67,181.3,179.1,179.02,180.31,171.5,179.91,181.75,179.86,172.65,182.37,181.02,183.47,183.59,180.92,183.22,182.21,183.97,167.39,186.54,180.18,181.09,167.91,183.4,185.01,181.41,184,176.03,186.73,177.52,181.38,181.88,181.98,166.07,180.12,170.34,171.72,180.98,182.1,180.6,180.58,180.8,182.3,180.87,180.11,181.04,180.87,180.98,184.83,180.09,184.28,181.32,166.1,181.71,182.62,167.1,182.85,186.08,180.24,179.15,181.66,169.37,184.27,180.94,181.74,186.4,169.1,181.24,183.32,181.54,181.5,181.4,182.41,182.44,181.53,179.86,179.9,181.58,185.19,167.32,181.57,167.18,177.01,181.51,180,184.48,187.48,179.98,186.78,183.23,181.72,186.73,167.91,185.86,170.45,180.49,172.76,181.51,182.5,185.27,182.9,171.4,181.48,178.3,178.29,168.08,169.71,182.8,182.78,180,181.69,181.48,181.2,180.8,179.67,167.24,186.87,183.95,178.42,181.4,181.17,181.61,186.83,185.3,175.7,183,181.59,181.3,183.34,180.64,180.3,181.84,185.77,180.85,169.66,180.03,167.03,185.9,185.6,167.43,186.73,184.3,180.92,185.33,183.86,166.75,167.41,184.52,184.51,166.55,186.3,185.1,182.73,184.53,180.77,180.5,181,183.6,180.9,165.8,181.5,171.44,171.46,184.85,186.1,184.62,183.4,166.64,180.27,185.5,181.58,181.65,178.43,181.9,182,180.7,180.6,169.46,182.1,183.8,181.63,184.7,180.21,184.8,169.52,181.06,184.97,181.3,181.75,182.02,179.84,180.89,186.59,167.1,183,181.72,180.49,185.1,186.52,180.67,180.4,179.54,186.36,179.62,182.44,168.93,182.4,166.9,185.3,185.23,183.11,180.9,185.1,184.37,182.44,182.29,185.9,168.63,179.97,185.26,169.44,181.62,185.25,182.65,169.9,180.05,181.23,180.26,179.98,180.48,181.39,185.93,166.56,167.23,186.72,181.41,185.4,171.17,185.17,181.15,167.24,180.78,180.78,181.89,181.7,166.66,169.63,181.37,185.96,174.21,167.02,181.57,167.05,167.01,180.58,181.2,182.43,182.2,181.28,179.77,181.63,184.84,181.4,166.2,166.3,182.69,178.98,169.5,170.04,184.52,177.1,167.11,180.28,166.53,183.78,181.25,180.15,185.8,180.58,185.11,181.27,180,185.86,180.94,181.62,181.42,181.33,179.85,170.52,169.53,182.39,179.97,171.51,185.98,181.51,165.97,169.75,184.47,183.45,182.8,181.44,167.95,184.41,181.61,181.77,182.22,181.02,167.32,182.72,182.54,166.01,185.13,180.21,180.21,185.18,184.75,186.16,181.71,183.99,181.16,181.73,181.01,182.1,182.39,183.99,184.13,182.4,182.32,182.92,184.9,184.49,181.62,178.52,184.5,179.95,180.06,180.26,183.44,184.95,181.2,183.58,184.6,167.44,166.72,184.23,183.95,181.59,180.13,180.74,166.98,184.64,182.38,184.5,184.5,169.05,184.68,185.74,183.71,183.5,182.26,170.7,181.67,170.56,183.6,183.5,187.15,166.93,171.66,170.3,181.3,184.53,181.42,181.42,183.86,181.37,188.1,179.54,167.06,184.2,187.8,170.56],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-38.59,-10.72],"lng":[165.67,188.13]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(quakes) <span class="sc">%&gt;%</span> <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">clusterOptions =</span> <span class="fu">markerClusterOptions</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-e7d6866ea5a5c38d468a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e7d6866ea5a5c38d468a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[-20.42,-20.62,-26,-17.97,-20.42,-19.68,-11.7,-28.11,-28.74,-17.47,-21.44,-12.26,-18.54,-21,-20.7,-15.94,-13.64,-17.83,-23.5,-22.63,-20.84,-10.98,-23.3,-30.2,-19.66,-17.94,-14.72,-16.46,-20.97,-19.84,-22.58,-16.32,-15.55,-23.55,-16.3,-25.82,-18.73,-17.64,-17.66,-18.82,-37.37,-15.31,-24.97,-15.49,-19.23,-30.1,-26.4,-11.77,-24.12,-18.97,-18.75,-19.26,-22.75,-21.37,-20.1,-19.85,-22.7,-22.06,-17.8,-24.2,-20.69,-21.16,-13.82,-11.49,-20.68,-17.1,-20.14,-21.96,-20.42,-15.46,-15.31,-19.86,-11.55,-23.74,-17.7,-23.54,-19.21,-12.11,-21.81,-28.98,-34.02,-23.84,-19.57,-20.12,-17.7,-19.66,-21.5,-23.64,-15.43,-15.41,-15.48,-13.36,-20.64,-19.72,-15.44,-19.73,-27.24,-18.16,-13.66,-24.57,-16.98,-26.2,-21.88,-33,-21.33,-19.44,-34.89,-20.24,-22.55,-36.95,-15.75,-16.85,-19.06,-26.11,-26.2,-26.13,-13.66,-13.47,-14.6,-18.96,-14.65,-19.9,-22.05,-19.22,-31.24,-17.93,-19.3,-26.53,-27.72,-19.19,-17.43,-17.05,-19.52,-23.71,-21.3,-16.24,-16.14,-23.95,-25.2,-18.84,-12.66,-20.65,-13.23,-29.91,-14.31,-20.1,-17.8,-21.27,-23.58,-17.9,-23.34,-15.56,-23.83,-11.8,-15.54,-20.65,-11.75,-24.81,-20.9,-11.34,-17.98,-24.34,-13.86,-35.56,-35.48,-34.2,-26,-19.89,-23.43,-18.89,-17.82,-25.68,-20.2,-15.2,-15.03,-32.22,-22.64,-17.42,-17.84,-15.02,-18.04,-24.6,-19.88,-20.3,-20.45,-17.67,-22.3,-19.85,-24.27,-15.85,-20.02,-18.56,-17.87,-24.08,-32.2,-20.36,-23.85,-24,-20.41,-17.72,-19.67,-17.7,-16.23,-26.72,-12.95,-21.97,-21.96,-20.32,-30.28,-20.2,-30.66,-16.17,-28.25,-20.47,-23.55,-20.94,-26.67,-18.13,-20.21,-18.31,-16.52,-22.36,-22.43,-20.37,-23.77,-13.65,-21.55,-16.24,-23.73,-22.34,-19.4,-24.64,-16,-19.62,-23.84,-23.54,-28.23,-21.68,-13.44,-24.96,-20.08,-24.36,-14.7,-18.2,-16.65,-18.11,-17.95,-15.5,-23.36,-19.15,-10.97,-14.85,-17.8,-22.5,-29.1,-20.32,-16.09,-19.18,-23.81,-23.79,-19.02,-20.9,-19.06,-17.88,-19.41,-26.17,-14.95,-18.73,-20.21,-21.29,-19.76,-22.09,-23.8,-20.16,-22.13,-17.44,-23.33,-24.78,-22,-19.13,-30.72,-22.32,-16.45,-17.7,-17.95,-24.4,-19.3,-21.13,-18.07,-20.6,-18.48,-13.34,-20.92,-25.31,-15.24,-16.4,-24.57,-17.94,-30.64,-18.64,-13.09,-19.68,-16.44,-21.09,-14.99,-23.3,-17.68,-22,-21.38,-32.62,-13.05,-12.93,-18.6,-21.34,-21.48,-17.4,-17.32,-18.77,-26.16,-12.59,-14.82,-21.79,-19.83,-29.5,-12.49,-26.1,-21.04,-10.78,-20.76,-11.41,-19.1,-23.91,-27.33,-12.25,-23.49,-27.18,-25.8,-27.19,-27.27,-27.1,-27.22,-27.38,-27.27,-27.54,-27.2,-27.71,-27.6,-27.38,-21.54,-27.21,-28.96,-12.01,-17.46,-30.17,-27.27,-17.79,-22.19,-17.1,-27.18,-11.64,-17.98,-16.9,-21.98,-32.14,-18.8,-26.78,-20.43,-18.3,-15.83,-23.44,-23.73,-19.89,-17.59,-19.77,-20.31,-15.33,-18.2,-15.36,-15.29,-15.36,-16.24,-13.47,-25.5,-14.32,-20.04,-28.83,-17.82,-27.23,-10.72,-27,-20.36,-27.17,-20.94,-17.46,-21.04,-23.7,-17.72,-15.87,-17.84,-13.45,-30.8,-11.63,-30.4,-26.18,-15.7,-17.95,-20.51,-15.36,-23.61,-33.2,-17.68,-22.24,-20.07,-25.04,-21.5,-14.28,-14.43,-32.7,-34.1,-19.7,-24.19,-26.6,-17.04,-22.1,-32.6,-33,-20.58,-20.61,-19.47,-17.47,-18.4,-23.33,-18.55,-26.16,-21.8,-27.63,-18.89,-20.3,-20.56,-16.1,-12.66,-21.05,-17.97,-19.83,-22.55,-22.28,-15.72,-20.85,-21.11,-25.31,-26.46,-24.09,-16.96,-23.19,-20.81,-15.03,-18.06,-19,-23.53,-18.18,-15.66,-18,-18.08,-18.05,-29.9,-20.9,-15.61,-16.03,-17.68,-31.94,-19.14,-18,-16.95,-10.79,-20.83,-32.9,-37.93,-29.09,-23.56,-19.6,-21.39,-14.85,-22.7,-32.42,-17.9,-23.58,-34.4,-17.61,-21.07,-13.84,-30.24,-18.49,-23.45,-16.04,-17.14,-22.54,-15.9,-30.04,-24.03,-18.89,-16.51,-20.1,-21.06,-13.07,-23.46,-19.41,-11.81,-11.76,-12.08,-25.59,-26.54,-20.9,-16.99,-23.46,-17.81,-15.17,-11.67,-20.75,-19.5,-26.18,-20.66,-19.22,-24.68,-15.43,-32.45,-21.31,-15.44,-13.26,-15.26,-33.57,-15.77,-15.79,-21,-16.28,-23.28,-16.1,-17.7,-15.96,-15.95,-17.56,-15.9,-15.29,-15.86,-16.2,-15.71,-16.45,-11.54,-19.61,-15.61,-21.16,-20.65,-20.33,-15.08,-23.28,-23.44,-23.12,-23.65,-22.91,-22.06,-13.56,-17.99,-23.92,-30.69,-21.92,-25.04,-19.92,-27.75,-17.71,-19.6,-34.68,-14.46,-18.85,-17.02,-20.41,-18.18,-16.49,-17.74,-20.49,-18.51,-27.28,-15.9,-20.57,-11.25,-20.04,-20.89,-16.62,-20.09,-24.96,-20.95,-23.31,-20.95,-21.58,-13.62,-12.72,-21.79,-20.48,-12.84,-17.02,-23.89,-23.07,-27.98,-28.1,-21.24,-21.24,-19.89,-32.82,-22,-21.57,-24.5,-33.03,-30.09,-22.75,-17.99,-19.6,-15.65,-17.78,-22.04,-20.06,-18.07,-12.85,-33.29,-34.63,-24.18,-23.78,-22.37,-23.97,-34.12,-25.25,-22.87,-18.48,-21.46,-28.56,-28.56,-21.3,-20.08,-18.82,-19.51,-12.05,-17.4,-23.93,-21.23,-16.23,-28.15,-20.81,-20.72,-23.29,-38.46,-15.48,-37.03,-20.48,-18.12,-18.17,-11.4,-23.1,-14.28,-22.87,-17.59,-27.6,-17.94,-17.88,-30.01,-19.19,-18.14,-23.46,-18.44,-18.21,-18.26,-15.85,-23.82,-18.6,-17.8,-10.78,-18.12,-19.34,-15.34,-24.97,-15.97,-23.47,-23.11,-20.54,-18.92,-20.16,-25.48,-18.19,-15.35,-18.69,-18.89,-17.61,-20.93,-17.6,-17.96,-18.8,-20.61,-20.74,-25.23,-23.9,-18.07,-15.43,-14.3,-18.04,-13.9,-17.64,-17.98,-25,-19.45,-16.11,-23.73,-17.74,-21.56,-20.97,-15.45,-15.93,-21.47,-21.44,-22.16,-13.36,-21.22,-26.1,-18.35,-17.2,-22.42,-17.91,-26.53,-26.5,-16.31,-18.76,-17.1,-19.28,-23.5,-21.26,-17.97,-26.02,-30.3,-24.89,-14.57,-15.4,-22.06,-25.14,-20.3,-25.28,-20.63,-19.02,-22.1,-38.59,-19.3,-31.03,-30.51,-22.55,-22.14,-25.6,-18.04,-21.29,-21.08,-20.64,-24.41,-12.16,-17.1,-21.13,-12.34,-16.43,-20.7,-21.18,-17.78,-21.57,-13.7,-12.27,-19.1,-19.85,-11.37,-20.7,-20.24,-16.4,-19.6,-21.63,-21.6,-21.77,-21.8,-21.05,-10.8,-17.9,-22.26,-22.33,-24.04,-20.4,-15,-27.87,-14.12,-23.61,-21.56,-21.19,-18.07,-26,-20.21,-28,-20.74,-31.8,-18.91,-20.45,-22.9,-18.11,-23.8,-23.42,-23.2,-12.93,-21.14,-19.13,-21.08,-20.07,-20.9,-25.04,-21.85,-19.34,-15.83,-23.73,-18.1,-22.12,-15.39,-16.21,-21.75,-22.1,-24.97,-19.36,-22.14,-21.48,-18.54,-21.62,-13.4,-15.5,-15.67,-21.78,-30.63,-15.7,-19.2,-19.7,-19.4,-15.85,-17.38,-24.33,-20.89,-18.97,-17.99,-15.8,-25.42,-21.6,-26.06,-17.56,-25.63,-25.46,-22.23,-21.55,-15.18,-13.79,-15.18,-18.78,-17.9,-18.5,-14.82,-15.65,-30.01,-13.16,-21.03,-21.4,-17.93,-20.87,-12.01,-19.1,-22.85,-17.08,-21.14,-12.23,-20.91,-11.38,-11.02,-22.09,-17.8,-18.94,-18.85,-21.91,-22.03,-18.1,-18.4,-21.2,-12,-11.7,-26.72,-24.39,-19.64,-21.35,-22.82,-38.28,-12.57,-22.24,-13.8,-21.07,-17.74,-23.87,-21.29,-22.2,-15.24,-17.82,-32.14,-19.3,-33.09,-20.18,-17.46,-17.44,-24.71,-21.53,-19.17,-28.05,-23.39,-22.33,-15.28,-20.27,-10.96,-21.52,-19.57,-23.08,-25.06,-17.85,-15.99,-20.56,-17.98,-18.4,-27.64,-20.99,-14.86,-29.33,-25.81,-14.1,-17.63,-23.47,-23.92,-20.88,-20.25,-19.33,-18.14,-22.41,-20.77,-17.95,-20.83,-27.84,-19.94,-23.6,-23.7,-30.39,-18.98,-27.89,-23.5,-23.73,-17.93,-35.94,-18.68,-23.47,-23.49,-23.85,-27.08,-20.88,-20.97,-21.71,-23.9,-15.78,-12.57,-19.69,-22.04,-17.99,-23.5,-21.4,-15.86,-23.95,-25.79,-23.75,-24.1,-18.56,-23.3,-17.03,-20.77,-28.1,-18.83,-23,-20.82,-22.95,-28.22,-27.99,-15.54,-12.37,-22.33,-22.7,-17.86,-16,-20.73,-15.45,-20.05,-17.95,-17.7,-25.93,-12.28,-20.13,-17.4,-21.59],[181.62,181.03,184.1,181.66,181.96,184.31,166.1,181.93,181.74,179.59,180.69,167,182.11,181.66,169.92,184.95,165.96,181.5,179.78,180.31,181.16,166.32,180.16,182,180.28,181.49,167.51,180.79,181.47,182.37,179.24,166.74,185.05,180.8,186,179.33,169.23,181.28,181.4,169.33,176.78,186.1,179.82,186.04,169.41,182.3,181.7,166.32,180.08,185.25,182.35,184.42,173.2,180.67,182.16,182.13,181,180.6,181.35,179.2,181.55,182.4,172.38,166.22,181.41,184.93,181.6,179.62,181.86,187.81,185.8,184.35,166.2,179.99,181.23,180.04,184.7,167.06,181.71,181.11,180.21,180.99,182.38,183.4,181.7,184.31,170.5,179.96,186.3,186.44,167.53,167.06,182.02,169.71,185.26,182.4,181.11,183.41,166.54,179.92,185.61,178.41,180.39,181.6,180.69,183.5,180.6,169.49,185.9,177.81,185.23,182.31,182.45,178.3,178.35,178.31,172.23,172.29,167.4,169.48,166.97,178.9,180.4,182.43,180.6,167.89,183.84,178.57,181.7,183.51,185.43,181.22,168.98,180.3,180.82,168.02,187.32,182.8,182.6,184.16,169.46,181.4,167.1,181.43,173.5,184.4,185.17,173.49,180.17,181.5,184.5,167.62,182.56,165.8,167.68,181.32,166.07,180,169.84,166.24,180.5,179.52,167.16,180.2,179.9,179.43,182.12,183.84,180,169.42,181.83,180.34,180.9,184.68,182.29,180.2,180.64,185.16,181.48,184.24,181.75,183.5,184.3,183,181.85,187.09,181.9,181.85,179.88,185.13,184.09,169.31,182,179.5,179.61,181.19,182.53,182.75,181.74,180.3,182.18,182.2,183.59,183.35,169.09,182.32,180.54,181.69,180.62,182.3,180.13,184.1,181.71,185.68,180.27,181.58,182.4,181.52,183.83,182.39,185.7,171.65,184.48,182.1,180.16,166.66,182.9,185.75,182.53,171.52,180.94,180.81,182.82,185.35,180.13,179.93,182.68,180.63,166.53,180.22,182.74,182.84,166,183.68,185.51,181.67,181.65,186.9,180.01,169.5,166.26,167.24,181.38,170.4,182.1,180.88,184.89,169.33,179.36,179.89,184.23,181.51,169.01,181.47,183.05,184.2,167.24,168.8,182.37,180.85,181.41,180.38,179.9,181.99,180.38,181.4,180.18,179.22,180.52,182.51,180.1,180.54,177.77,185,184.68,179.85,180.6,185.32,181.57,182.28,181.49,166.2,181.5,179.69,186.21,185.86,178.4,181.51,181.2,169.32,169.28,184.14,185.74,181.38,171.39,179.7,181.36,180.53,181.39,181.5,169.58,169.63,181.91,181.41,183.78,181.02,181.03,169.24,179.5,167.1,167.32,183.48,182.04,182.31,166.36,182.3,181.2,165.77,185.77,166.24,183.87,180,182.6,166.6,179.07,182.18,182.1,182.18,182.38,182.18,182.28,181.7,182.5,182.5,182.39,182.47,182.4,182.39,185.48,182.43,182.61,166.29,181.32,182.02,182.36,181.32,171.4,182.68,182.53,166.47,181.58,185.72,179.6,179.9,169.21,183.61,182.37,183.2,182.51,182.93,179.99,184.08,181.09,181.4,184.06,186.75,181.6,186.66,186.42,186.71,167.95,167.14,182.82,167.33,182.01,181.66,181.49,180.98,165.99,183.88,186.16,183.68,181.26,181.9,181.2,179.6,181.42,188.13,181.3,170.3,182.16,166.14,181.4,178.59,184.5,181.5,182.3,167.51,180.23,181.6,186.8,184.56,169.14,180.1,185.2,167.26,167.26,181.7,181.8,186.2,180.38,182.77,186.8,179.71,180.9,182.4,181.24,182.6,169.15,180.96,183.4,180.26,182.23,178.47,183.2,182.93,169.48,182.3,182.04,185.32,166.37,184.68,168.52,182.54,183.81,183.52,185.64,181.59,181.5,180.15,182.5,179.68,167.7,182.8,184.7,167.32,181.59,185.6,179.99,180.63,186.8,180.62,180.7,180.86,181.16,181.9,167.5,185.43,181.11,180.57,184.36,185.48,185.94,166.06,185.9,181.6,177.47,183.2,180.23,185.2,180.68,184.87,183.3,181.21,181.3,183.4,180.5,181.2,181.13,170.62,181.63,169.04,180.23,183.54,185.31,172.91,185.3,181.2,180.22,184.46,187.1,186.3,183.81,166.87,180.09,182.3,165.98,165.96,165.76,180.02,183.63,184.28,187,180.17,181.82,187.2,166.02,184.52,186.9,179.79,185.77,182.54,183.33,167.38,181.15,180.84,167.18,167.01,183.13,180.8,167.01,166.83,183.2,166.94,184.6,167.25,181.31,166.69,167.34,181.59,167.42,166.9,166.85,166.8,166.91,167.54,166.18,181.91,187.15,181.41,182.22,168.71,166.62,184.61,184.6,184.42,184.46,183.95,180.47,166.49,181.57,184.47,182.1,182.8,180.97,183.91,182.26,181.18,183.84,179.82,167.26,187.55,182.41,186.51,182.04,187.8,181.31,181.69,182.64,183.4,167.16,181.33,166.36,181.87,181.25,186.74,168.75,179.87,181.42,179.27,181.06,181.9,167.15,166.28,185,169.76,166.78,182.93,182.39,184.03,181.96,182.25,180.81,180.86,174.46,179.8,185.5,185.62,180.92,180.2,182.4,170.99,168.98,181.87,186.26,181.53,184.91,168.69,181.54,165.67,181.3,179.1,179.02,180.31,171.5,179.91,181.75,179.86,172.65,182.37,181.02,183.47,183.59,180.92,183.22,182.21,183.97,167.39,186.54,180.18,181.09,167.91,183.4,185.01,181.41,184,176.03,186.73,177.52,181.38,181.88,181.98,166.07,180.12,170.34,171.72,180.98,182.1,180.6,180.58,180.8,182.3,180.87,180.11,181.04,180.87,180.98,184.83,180.09,184.28,181.32,166.1,181.71,182.62,167.1,182.85,186.08,180.24,179.15,181.66,169.37,184.27,180.94,181.74,186.4,169.1,181.24,183.32,181.54,181.5,181.4,182.41,182.44,181.53,179.86,179.9,181.58,185.19,167.32,181.57,167.18,177.01,181.51,180,184.48,187.48,179.98,186.78,183.23,181.72,186.73,167.91,185.86,170.45,180.49,172.76,181.51,182.5,185.27,182.9,171.4,181.48,178.3,178.29,168.08,169.71,182.8,182.78,180,181.69,181.48,181.2,180.8,179.67,167.24,186.87,183.95,178.42,181.4,181.17,181.61,186.83,185.3,175.7,183,181.59,181.3,183.34,180.64,180.3,181.84,185.77,180.85,169.66,180.03,167.03,185.9,185.6,167.43,186.73,184.3,180.92,185.33,183.86,166.75,167.41,184.52,184.51,166.55,186.3,185.1,182.73,184.53,180.77,180.5,181,183.6,180.9,165.8,181.5,171.44,171.46,184.85,186.1,184.62,183.4,166.64,180.27,185.5,181.58,181.65,178.43,181.9,182,180.7,180.6,169.46,182.1,183.8,181.63,184.7,180.21,184.8,169.52,181.06,184.97,181.3,181.75,182.02,179.84,180.89,186.59,167.1,183,181.72,180.49,185.1,186.52,180.67,180.4,179.54,186.36,179.62,182.44,168.93,182.4,166.9,185.3,185.23,183.11,180.9,185.1,184.37,182.44,182.29,185.9,168.63,179.97,185.26,169.44,181.62,185.25,182.65,169.9,180.05,181.23,180.26,179.98,180.48,181.39,185.93,166.56,167.23,186.72,181.41,185.4,171.17,185.17,181.15,167.24,180.78,180.78,181.89,181.7,166.66,169.63,181.37,185.96,174.21,167.02,181.57,167.05,167.01,180.58,181.2,182.43,182.2,181.28,179.77,181.63,184.84,181.4,166.2,166.3,182.69,178.98,169.5,170.04,184.52,177.1,167.11,180.28,166.53,183.78,181.25,180.15,185.8,180.58,185.11,181.27,180,185.86,180.94,181.62,181.42,181.33,179.85,170.52,169.53,182.39,179.97,171.51,185.98,181.51,165.97,169.75,184.47,183.45,182.8,181.44,167.95,184.41,181.61,181.77,182.22,181.02,167.32,182.72,182.54,166.01,185.13,180.21,180.21,185.18,184.75,186.16,181.71,183.99,181.16,181.73,181.01,182.1,182.39,183.99,184.13,182.4,182.32,182.92,184.9,184.49,181.62,178.52,184.5,179.95,180.06,180.26,183.44,184.95,181.2,183.58,184.6,167.44,166.72,184.23,183.95,181.59,180.13,180.74,166.98,184.64,182.38,184.5,184.5,169.05,184.68,185.74,183.71,183.5,182.26,170.7,181.67,170.56,183.6,183.5,187.15,166.93,171.66,170.3,181.3,184.53,181.42,181.42,183.86,181.37,188.1,179.54,167.06,184.2,187.8,170.56],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-38.59,-10.72],"lng":[165.67,188.13]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(quakes) <span class="sc">%&gt;%</span> <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircles</span>(<span class="at">lng =</span> quakes<span class="sc">$</span>long,<span class="at">lat=</span>quakes<span class="sc">$</span>lat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-39f7c5b95337e7ba188b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-39f7c5b95337e7ba188b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[-20.42,-20.62,-26,-17.97,-20.42,-19.68,-11.7,-28.11,-28.74,-17.47,-21.44,-12.26,-18.54,-21,-20.7,-15.94,-13.64,-17.83,-23.5,-22.63,-20.84,-10.98,-23.3,-30.2,-19.66,-17.94,-14.72,-16.46,-20.97,-19.84,-22.58,-16.32,-15.55,-23.55,-16.3,-25.82,-18.73,-17.64,-17.66,-18.82,-37.37,-15.31,-24.97,-15.49,-19.23,-30.1,-26.4,-11.77,-24.12,-18.97,-18.75,-19.26,-22.75,-21.37,-20.1,-19.85,-22.7,-22.06,-17.8,-24.2,-20.69,-21.16,-13.82,-11.49,-20.68,-17.1,-20.14,-21.96,-20.42,-15.46,-15.31,-19.86,-11.55,-23.74,-17.7,-23.54,-19.21,-12.11,-21.81,-28.98,-34.02,-23.84,-19.57,-20.12,-17.7,-19.66,-21.5,-23.64,-15.43,-15.41,-15.48,-13.36,-20.64,-19.72,-15.44,-19.73,-27.24,-18.16,-13.66,-24.57,-16.98,-26.2,-21.88,-33,-21.33,-19.44,-34.89,-20.24,-22.55,-36.95,-15.75,-16.85,-19.06,-26.11,-26.2,-26.13,-13.66,-13.47,-14.6,-18.96,-14.65,-19.9,-22.05,-19.22,-31.24,-17.93,-19.3,-26.53,-27.72,-19.19,-17.43,-17.05,-19.52,-23.71,-21.3,-16.24,-16.14,-23.95,-25.2,-18.84,-12.66,-20.65,-13.23,-29.91,-14.31,-20.1,-17.8,-21.27,-23.58,-17.9,-23.34,-15.56,-23.83,-11.8,-15.54,-20.65,-11.75,-24.81,-20.9,-11.34,-17.98,-24.34,-13.86,-35.56,-35.48,-34.2,-26,-19.89,-23.43,-18.89,-17.82,-25.68,-20.2,-15.2,-15.03,-32.22,-22.64,-17.42,-17.84,-15.02,-18.04,-24.6,-19.88,-20.3,-20.45,-17.67,-22.3,-19.85,-24.27,-15.85,-20.02,-18.56,-17.87,-24.08,-32.2,-20.36,-23.85,-24,-20.41,-17.72,-19.67,-17.7,-16.23,-26.72,-12.95,-21.97,-21.96,-20.32,-30.28,-20.2,-30.66,-16.17,-28.25,-20.47,-23.55,-20.94,-26.67,-18.13,-20.21,-18.31,-16.52,-22.36,-22.43,-20.37,-23.77,-13.65,-21.55,-16.24,-23.73,-22.34,-19.4,-24.64,-16,-19.62,-23.84,-23.54,-28.23,-21.68,-13.44,-24.96,-20.08,-24.36,-14.7,-18.2,-16.65,-18.11,-17.95,-15.5,-23.36,-19.15,-10.97,-14.85,-17.8,-22.5,-29.1,-20.32,-16.09,-19.18,-23.81,-23.79,-19.02,-20.9,-19.06,-17.88,-19.41,-26.17,-14.95,-18.73,-20.21,-21.29,-19.76,-22.09,-23.8,-20.16,-22.13,-17.44,-23.33,-24.78,-22,-19.13,-30.72,-22.32,-16.45,-17.7,-17.95,-24.4,-19.3,-21.13,-18.07,-20.6,-18.48,-13.34,-20.92,-25.31,-15.24,-16.4,-24.57,-17.94,-30.64,-18.64,-13.09,-19.68,-16.44,-21.09,-14.99,-23.3,-17.68,-22,-21.38,-32.62,-13.05,-12.93,-18.6,-21.34,-21.48,-17.4,-17.32,-18.77,-26.16,-12.59,-14.82,-21.79,-19.83,-29.5,-12.49,-26.1,-21.04,-10.78,-20.76,-11.41,-19.1,-23.91,-27.33,-12.25,-23.49,-27.18,-25.8,-27.19,-27.27,-27.1,-27.22,-27.38,-27.27,-27.54,-27.2,-27.71,-27.6,-27.38,-21.54,-27.21,-28.96,-12.01,-17.46,-30.17,-27.27,-17.79,-22.19,-17.1,-27.18,-11.64,-17.98,-16.9,-21.98,-32.14,-18.8,-26.78,-20.43,-18.3,-15.83,-23.44,-23.73,-19.89,-17.59,-19.77,-20.31,-15.33,-18.2,-15.36,-15.29,-15.36,-16.24,-13.47,-25.5,-14.32,-20.04,-28.83,-17.82,-27.23,-10.72,-27,-20.36,-27.17,-20.94,-17.46,-21.04,-23.7,-17.72,-15.87,-17.84,-13.45,-30.8,-11.63,-30.4,-26.18,-15.7,-17.95,-20.51,-15.36,-23.61,-33.2,-17.68,-22.24,-20.07,-25.04,-21.5,-14.28,-14.43,-32.7,-34.1,-19.7,-24.19,-26.6,-17.04,-22.1,-32.6,-33,-20.58,-20.61,-19.47,-17.47,-18.4,-23.33,-18.55,-26.16,-21.8,-27.63,-18.89,-20.3,-20.56,-16.1,-12.66,-21.05,-17.97,-19.83,-22.55,-22.28,-15.72,-20.85,-21.11,-25.31,-26.46,-24.09,-16.96,-23.19,-20.81,-15.03,-18.06,-19,-23.53,-18.18,-15.66,-18,-18.08,-18.05,-29.9,-20.9,-15.61,-16.03,-17.68,-31.94,-19.14,-18,-16.95,-10.79,-20.83,-32.9,-37.93,-29.09,-23.56,-19.6,-21.39,-14.85,-22.7,-32.42,-17.9,-23.58,-34.4,-17.61,-21.07,-13.84,-30.24,-18.49,-23.45,-16.04,-17.14,-22.54,-15.9,-30.04,-24.03,-18.89,-16.51,-20.1,-21.06,-13.07,-23.46,-19.41,-11.81,-11.76,-12.08,-25.59,-26.54,-20.9,-16.99,-23.46,-17.81,-15.17,-11.67,-20.75,-19.5,-26.18,-20.66,-19.22,-24.68,-15.43,-32.45,-21.31,-15.44,-13.26,-15.26,-33.57,-15.77,-15.79,-21,-16.28,-23.28,-16.1,-17.7,-15.96,-15.95,-17.56,-15.9,-15.29,-15.86,-16.2,-15.71,-16.45,-11.54,-19.61,-15.61,-21.16,-20.65,-20.33,-15.08,-23.28,-23.44,-23.12,-23.65,-22.91,-22.06,-13.56,-17.99,-23.92,-30.69,-21.92,-25.04,-19.92,-27.75,-17.71,-19.6,-34.68,-14.46,-18.85,-17.02,-20.41,-18.18,-16.49,-17.74,-20.49,-18.51,-27.28,-15.9,-20.57,-11.25,-20.04,-20.89,-16.62,-20.09,-24.96,-20.95,-23.31,-20.95,-21.58,-13.62,-12.72,-21.79,-20.48,-12.84,-17.02,-23.89,-23.07,-27.98,-28.1,-21.24,-21.24,-19.89,-32.82,-22,-21.57,-24.5,-33.03,-30.09,-22.75,-17.99,-19.6,-15.65,-17.78,-22.04,-20.06,-18.07,-12.85,-33.29,-34.63,-24.18,-23.78,-22.37,-23.97,-34.12,-25.25,-22.87,-18.48,-21.46,-28.56,-28.56,-21.3,-20.08,-18.82,-19.51,-12.05,-17.4,-23.93,-21.23,-16.23,-28.15,-20.81,-20.72,-23.29,-38.46,-15.48,-37.03,-20.48,-18.12,-18.17,-11.4,-23.1,-14.28,-22.87,-17.59,-27.6,-17.94,-17.88,-30.01,-19.19,-18.14,-23.46,-18.44,-18.21,-18.26,-15.85,-23.82,-18.6,-17.8,-10.78,-18.12,-19.34,-15.34,-24.97,-15.97,-23.47,-23.11,-20.54,-18.92,-20.16,-25.48,-18.19,-15.35,-18.69,-18.89,-17.61,-20.93,-17.6,-17.96,-18.8,-20.61,-20.74,-25.23,-23.9,-18.07,-15.43,-14.3,-18.04,-13.9,-17.64,-17.98,-25,-19.45,-16.11,-23.73,-17.74,-21.56,-20.97,-15.45,-15.93,-21.47,-21.44,-22.16,-13.36,-21.22,-26.1,-18.35,-17.2,-22.42,-17.91,-26.53,-26.5,-16.31,-18.76,-17.1,-19.28,-23.5,-21.26,-17.97,-26.02,-30.3,-24.89,-14.57,-15.4,-22.06,-25.14,-20.3,-25.28,-20.63,-19.02,-22.1,-38.59,-19.3,-31.03,-30.51,-22.55,-22.14,-25.6,-18.04,-21.29,-21.08,-20.64,-24.41,-12.16,-17.1,-21.13,-12.34,-16.43,-20.7,-21.18,-17.78,-21.57,-13.7,-12.27,-19.1,-19.85,-11.37,-20.7,-20.24,-16.4,-19.6,-21.63,-21.6,-21.77,-21.8,-21.05,-10.8,-17.9,-22.26,-22.33,-24.04,-20.4,-15,-27.87,-14.12,-23.61,-21.56,-21.19,-18.07,-26,-20.21,-28,-20.74,-31.8,-18.91,-20.45,-22.9,-18.11,-23.8,-23.42,-23.2,-12.93,-21.14,-19.13,-21.08,-20.07,-20.9,-25.04,-21.85,-19.34,-15.83,-23.73,-18.1,-22.12,-15.39,-16.21,-21.75,-22.1,-24.97,-19.36,-22.14,-21.48,-18.54,-21.62,-13.4,-15.5,-15.67,-21.78,-30.63,-15.7,-19.2,-19.7,-19.4,-15.85,-17.38,-24.33,-20.89,-18.97,-17.99,-15.8,-25.42,-21.6,-26.06,-17.56,-25.63,-25.46,-22.23,-21.55,-15.18,-13.79,-15.18,-18.78,-17.9,-18.5,-14.82,-15.65,-30.01,-13.16,-21.03,-21.4,-17.93,-20.87,-12.01,-19.1,-22.85,-17.08,-21.14,-12.23,-20.91,-11.38,-11.02,-22.09,-17.8,-18.94,-18.85,-21.91,-22.03,-18.1,-18.4,-21.2,-12,-11.7,-26.72,-24.39,-19.64,-21.35,-22.82,-38.28,-12.57,-22.24,-13.8,-21.07,-17.74,-23.87,-21.29,-22.2,-15.24,-17.82,-32.14,-19.3,-33.09,-20.18,-17.46,-17.44,-24.71,-21.53,-19.17,-28.05,-23.39,-22.33,-15.28,-20.27,-10.96,-21.52,-19.57,-23.08,-25.06,-17.85,-15.99,-20.56,-17.98,-18.4,-27.64,-20.99,-14.86,-29.33,-25.81,-14.1,-17.63,-23.47,-23.92,-20.88,-20.25,-19.33,-18.14,-22.41,-20.77,-17.95,-20.83,-27.84,-19.94,-23.6,-23.7,-30.39,-18.98,-27.89,-23.5,-23.73,-17.93,-35.94,-18.68,-23.47,-23.49,-23.85,-27.08,-20.88,-20.97,-21.71,-23.9,-15.78,-12.57,-19.69,-22.04,-17.99,-23.5,-21.4,-15.86,-23.95,-25.79,-23.75,-24.1,-18.56,-23.3,-17.03,-20.77,-28.1,-18.83,-23,-20.82,-22.95,-28.22,-27.99,-15.54,-12.37,-22.33,-22.7,-17.86,-16,-20.73,-15.45,-20.05,-17.95,-17.7,-25.93,-12.28,-20.13,-17.4,-21.59],[181.62,181.03,184.1,181.66,181.96,184.31,166.1,181.93,181.74,179.59,180.69,167,182.11,181.66,169.92,184.95,165.96,181.5,179.78,180.31,181.16,166.32,180.16,182,180.28,181.49,167.51,180.79,181.47,182.37,179.24,166.74,185.05,180.8,186,179.33,169.23,181.28,181.4,169.33,176.78,186.1,179.82,186.04,169.41,182.3,181.7,166.32,180.08,185.25,182.35,184.42,173.2,180.67,182.16,182.13,181,180.6,181.35,179.2,181.55,182.4,172.38,166.22,181.41,184.93,181.6,179.62,181.86,187.81,185.8,184.35,166.2,179.99,181.23,180.04,184.7,167.06,181.71,181.11,180.21,180.99,182.38,183.4,181.7,184.31,170.5,179.96,186.3,186.44,167.53,167.06,182.02,169.71,185.26,182.4,181.11,183.41,166.54,179.92,185.61,178.41,180.39,181.6,180.69,183.5,180.6,169.49,185.9,177.81,185.23,182.31,182.45,178.3,178.35,178.31,172.23,172.29,167.4,169.48,166.97,178.9,180.4,182.43,180.6,167.89,183.84,178.57,181.7,183.51,185.43,181.22,168.98,180.3,180.82,168.02,187.32,182.8,182.6,184.16,169.46,181.4,167.1,181.43,173.5,184.4,185.17,173.49,180.17,181.5,184.5,167.62,182.56,165.8,167.68,181.32,166.07,180,169.84,166.24,180.5,179.52,167.16,180.2,179.9,179.43,182.12,183.84,180,169.42,181.83,180.34,180.9,184.68,182.29,180.2,180.64,185.16,181.48,184.24,181.75,183.5,184.3,183,181.85,187.09,181.9,181.85,179.88,185.13,184.09,169.31,182,179.5,179.61,181.19,182.53,182.75,181.74,180.3,182.18,182.2,183.59,183.35,169.09,182.32,180.54,181.69,180.62,182.3,180.13,184.1,181.71,185.68,180.27,181.58,182.4,181.52,183.83,182.39,185.7,171.65,184.48,182.1,180.16,166.66,182.9,185.75,182.53,171.52,180.94,180.81,182.82,185.35,180.13,179.93,182.68,180.63,166.53,180.22,182.74,182.84,166,183.68,185.51,181.67,181.65,186.9,180.01,169.5,166.26,167.24,181.38,170.4,182.1,180.88,184.89,169.33,179.36,179.89,184.23,181.51,169.01,181.47,183.05,184.2,167.24,168.8,182.37,180.85,181.41,180.38,179.9,181.99,180.38,181.4,180.18,179.22,180.52,182.51,180.1,180.54,177.77,185,184.68,179.85,180.6,185.32,181.57,182.28,181.49,166.2,181.5,179.69,186.21,185.86,178.4,181.51,181.2,169.32,169.28,184.14,185.74,181.38,171.39,179.7,181.36,180.53,181.39,181.5,169.58,169.63,181.91,181.41,183.78,181.02,181.03,169.24,179.5,167.1,167.32,183.48,182.04,182.31,166.36,182.3,181.2,165.77,185.77,166.24,183.87,180,182.6,166.6,179.07,182.18,182.1,182.18,182.38,182.18,182.28,181.7,182.5,182.5,182.39,182.47,182.4,182.39,185.48,182.43,182.61,166.29,181.32,182.02,182.36,181.32,171.4,182.68,182.53,166.47,181.58,185.72,179.6,179.9,169.21,183.61,182.37,183.2,182.51,182.93,179.99,184.08,181.09,181.4,184.06,186.75,181.6,186.66,186.42,186.71,167.95,167.14,182.82,167.33,182.01,181.66,181.49,180.98,165.99,183.88,186.16,183.68,181.26,181.9,181.2,179.6,181.42,188.13,181.3,170.3,182.16,166.14,181.4,178.59,184.5,181.5,182.3,167.51,180.23,181.6,186.8,184.56,169.14,180.1,185.2,167.26,167.26,181.7,181.8,186.2,180.38,182.77,186.8,179.71,180.9,182.4,181.24,182.6,169.15,180.96,183.4,180.26,182.23,178.47,183.2,182.93,169.48,182.3,182.04,185.32,166.37,184.68,168.52,182.54,183.81,183.52,185.64,181.59,181.5,180.15,182.5,179.68,167.7,182.8,184.7,167.32,181.59,185.6,179.99,180.63,186.8,180.62,180.7,180.86,181.16,181.9,167.5,185.43,181.11,180.57,184.36,185.48,185.94,166.06,185.9,181.6,177.47,183.2,180.23,185.2,180.68,184.87,183.3,181.21,181.3,183.4,180.5,181.2,181.13,170.62,181.63,169.04,180.23,183.54,185.31,172.91,185.3,181.2,180.22,184.46,187.1,186.3,183.81,166.87,180.09,182.3,165.98,165.96,165.76,180.02,183.63,184.28,187,180.17,181.82,187.2,166.02,184.52,186.9,179.79,185.77,182.54,183.33,167.38,181.15,180.84,167.18,167.01,183.13,180.8,167.01,166.83,183.2,166.94,184.6,167.25,181.31,166.69,167.34,181.59,167.42,166.9,166.85,166.8,166.91,167.54,166.18,181.91,187.15,181.41,182.22,168.71,166.62,184.61,184.6,184.42,184.46,183.95,180.47,166.49,181.57,184.47,182.1,182.8,180.97,183.91,182.26,181.18,183.84,179.82,167.26,187.55,182.41,186.51,182.04,187.8,181.31,181.69,182.64,183.4,167.16,181.33,166.36,181.87,181.25,186.74,168.75,179.87,181.42,179.27,181.06,181.9,167.15,166.28,185,169.76,166.78,182.93,182.39,184.03,181.96,182.25,180.81,180.86,174.46,179.8,185.5,185.62,180.92,180.2,182.4,170.99,168.98,181.87,186.26,181.53,184.91,168.69,181.54,165.67,181.3,179.1,179.02,180.31,171.5,179.91,181.75,179.86,172.65,182.37,181.02,183.47,183.59,180.92,183.22,182.21,183.97,167.39,186.54,180.18,181.09,167.91,183.4,185.01,181.41,184,176.03,186.73,177.52,181.38,181.88,181.98,166.07,180.12,170.34,171.72,180.98,182.1,180.6,180.58,180.8,182.3,180.87,180.11,181.04,180.87,180.98,184.83,180.09,184.28,181.32,166.1,181.71,182.62,167.1,182.85,186.08,180.24,179.15,181.66,169.37,184.27,180.94,181.74,186.4,169.1,181.24,183.32,181.54,181.5,181.4,182.41,182.44,181.53,179.86,179.9,181.58,185.19,167.32,181.57,167.18,177.01,181.51,180,184.48,187.48,179.98,186.78,183.23,181.72,186.73,167.91,185.86,170.45,180.49,172.76,181.51,182.5,185.27,182.9,171.4,181.48,178.3,178.29,168.08,169.71,182.8,182.78,180,181.69,181.48,181.2,180.8,179.67,167.24,186.87,183.95,178.42,181.4,181.17,181.61,186.83,185.3,175.7,183,181.59,181.3,183.34,180.64,180.3,181.84,185.77,180.85,169.66,180.03,167.03,185.9,185.6,167.43,186.73,184.3,180.92,185.33,183.86,166.75,167.41,184.52,184.51,166.55,186.3,185.1,182.73,184.53,180.77,180.5,181,183.6,180.9,165.8,181.5,171.44,171.46,184.85,186.1,184.62,183.4,166.64,180.27,185.5,181.58,181.65,178.43,181.9,182,180.7,180.6,169.46,182.1,183.8,181.63,184.7,180.21,184.8,169.52,181.06,184.97,181.3,181.75,182.02,179.84,180.89,186.59,167.1,183,181.72,180.49,185.1,186.52,180.67,180.4,179.54,186.36,179.62,182.44,168.93,182.4,166.9,185.3,185.23,183.11,180.9,185.1,184.37,182.44,182.29,185.9,168.63,179.97,185.26,169.44,181.62,185.25,182.65,169.9,180.05,181.23,180.26,179.98,180.48,181.39,185.93,166.56,167.23,186.72,181.41,185.4,171.17,185.17,181.15,167.24,180.78,180.78,181.89,181.7,166.66,169.63,181.37,185.96,174.21,167.02,181.57,167.05,167.01,180.58,181.2,182.43,182.2,181.28,179.77,181.63,184.84,181.4,166.2,166.3,182.69,178.98,169.5,170.04,184.52,177.1,167.11,180.28,166.53,183.78,181.25,180.15,185.8,180.58,185.11,181.27,180,185.86,180.94,181.62,181.42,181.33,179.85,170.52,169.53,182.39,179.97,171.51,185.98,181.51,165.97,169.75,184.47,183.45,182.8,181.44,167.95,184.41,181.61,181.77,182.22,181.02,167.32,182.72,182.54,166.01,185.13,180.21,180.21,185.18,184.75,186.16,181.71,183.99,181.16,181.73,181.01,182.1,182.39,183.99,184.13,182.4,182.32,182.92,184.9,184.49,181.62,178.52,184.5,179.95,180.06,180.26,183.44,184.95,181.2,183.58,184.6,167.44,166.72,184.23,183.95,181.59,180.13,180.74,166.98,184.64,182.38,184.5,184.5,169.05,184.68,185.74,183.71,183.5,182.26,170.7,181.67,170.56,183.6,183.5,187.15,166.93,171.66,170.3,181.3,184.53,181.42,181.42,183.86,181.37,188.1,179.54,167.06,184.2,187.8,170.56],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[-38.59,-10.72],"lng":[165.67,188.13]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(quakes) <span class="sc">%&gt;%</span> <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="fl">86.92</span>,<span class="at">lat=</span><span class="fl">27.99</span>, <span class="at">popup =</span> <span class="st">"Mount Everest"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addRectangles</span>(<span class="fl">86.9</span>, <span class="fl">27.95</span>, <span class="dv">87</span>, <span class="fl">28.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4851f474141c0c5bcc0a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4851f474141c0c5bcc0a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[27.99,86.92,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Mount Everest",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addRectangles","args":[27.95,86.90000000000001,28.05,87,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[27.95,28.05],"lng":[86.90000000000001,87]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="summary-highlights-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlights-2">Summary &amp; Highlights&nbsp;</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<ul>
+<li><p>Annotations provide&nbsp;metadata&nbsp;(or additional information about the data being displayed)&nbsp;for the plot.&nbsp;</p></li>
+<li><p>Customize&nbsp;the&nbsp;titles associated with the plot, axes, and legends&nbsp;using the&nbsp;<strong>labs()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>Automatically remove overlapping labels from a plot by using&nbsp;<strong>check_overlap&nbsp;= TRUE</strong> in the&nbsp;<strong>geom_text()</strong> function.&nbsp;</p></li>
+<li><p>Faceting&nbsp;provides a way to&nbsp;visualize each level of a discrete or categorical variable&nbsp;by dividing a plot&nbsp;into subplots based on a variable.&nbsp;</p></li>
+<li><p>The&nbsp;<strong>ggplot()</strong>&nbsp;function&nbsp;has several built-in themes, including&nbsp;<strong>theme_bw()</strong>,&nbsp;<strong>theme_minimal()</strong>,&nbsp;<strong>theme_classic()</strong>,&nbsp;<strong>theme_void()</strong>,&nbsp;<strong>theme_linedraw()</strong>,&nbsp;<strong>theme_light()</strong>, and&nbsp;<strong>theme_dark()</strong>.&nbsp;</p></li>
+<li><p>You can also customize themes&nbsp;by changing the borders, backgrounds, lines, text, and more&nbsp;by using the&nbsp;<strong>theme()</strong>&nbsp;function.&nbsp;</p></li>
+<li><p>The&nbsp;ggthemes&nbsp;package&nbsp;includes more themes and color scales&nbsp;and you can easily try different themes by first storing the base plot.&nbsp;</p></li>
+<li><p>Create interactive maps using the Leaflet library.&nbsp;</p></li>
+<li><p>A map tile can appear in many different styles.&nbsp;</p></li>
+<li><p>Add markers&nbsp;and captions&nbsp;to a map individually or from a data frame&nbsp;and then&nbsp;adjust the way they appear.&nbsp;</p></li>
+</ul>
+</section>
+<section id="cheatsheet--basic-plots-and-customization-and-maps" class="level2">
+<h2 class="anchored" data-anchor-id="cheatsheet--basic-plots-and-customization-and-maps">CheatSheet -Basic Plots and Customization and Maps</h2>
+<table class="table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 13%">
+<col style="width: 57%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>ommand</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>labs</td>
+<td><code>labs(x=x-label,y=y-label,color="legend",title=graph-title)</code></td>
+<td>You can use the labs() function to change the x-axis label, y-axis label, the legend title, the entire plot title, the plot subtitle, and the plot captions. You do not have to add all these labels, but it is a good idea to make sure that at least the x and y-axis, and the title are informative. The color parameter changes the legend title.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_point(shape=1)+labs(x="wt",y="mpeg",color="cylinder",title="MPG vs WT")</code></td>
+</tr>
+<tr class="even">
+<td>geom_text()</td>
+<td><code>geom_text(aes(label=rownames(data))</code></td>
+<td>You use this function to add text labels to data points.</td>
+<td><code>ggplot(mtcars,aes(x=wt,y=mpg))+geom_point(shape=1)+labs(x="wt",y="mpeg",color="cylinder",title="MPG vs WT")+geom_text(aes(label=rownames(mtcars))</code></td>
+</tr>
+<tr class="odd">
+<td>Faceting</td>
+<td><code>ggplot(data,aes(x=feature1))+geom_histogram()+facet_wrap(~discrete-feature1)</code></td>
+<td>Facets divide a plot into subplots based on the values of discrete or categorical variables. Facets are a good way to explore the data further.</td>
+<td><code>ggplot(mtcars,aes(x=mpeg))+geom_histogram()+facet_wrap(~cyl)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cheat-sheet---customization-and-maps-using-leaflet" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet---customization-and-maps-using-leaflet">Cheat Sheet - Customization and Maps using Leaflet</h2>
+<table class="table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 20%">
+<col style="width: 37%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install Leaflet Package</td>
+<td><code>install.packages("leaflet")</code></td>
+<td>Leaflet is an open-source library that provides tools for creating interactive maps. Leaflet also allows to integrate maps into websites or web applications. Leaflet supports various map providers, including OpenStreetMap, Mapbox, and many others.</td>
+<td><code>install.packages("leaflet")</code></td>
+</tr>
+<tr class="even">
+<td>Load Leaflet Package</td>
+<td><code>library(leaflet)</code></td>
+<td>Load leaflet package in R environment.</td>
+<td><code>library(leaflet)</code></td>
+</tr>
+<tr class="odd">
+<td>Map Tiles</td>
+<td><code>leaftlet()addTiles()</code></td>
+<td>The <strong>leaflet()</strong> function adds a blank map to the leaflet work space. The <strong>addTiles()</strong> function adds features (layers) to basic map. It will bring in the default OpenStreetMap (OSM) tiles.</td>
+<td><code>mymap &lt;- leaftlet() %&gt;% addTiles()mymap</code></td>
+</tr>
+<tr class="even">
+<td>List all map providers</td>
+<td><code>names(providers)</code></td>
+<td>In addition to default OpenStreetMap (OSM) tiles, Leaflet supports other tiles stored in a list called providers. <strong>names(providers)</strong> lists the names of all the map tiles.</td>
+<td><code>names(providers)</code></td>
+</tr>
+<tr class="odd">
+<td>Use tiles from specific provider</td>
+<td><code>addProviderTiles(map, provider, layerId, group, options)</code></td>
+<td>Instead of using addTiles(), you have the option to utilize <strong>addProviderTiles()</strong> for incorporating maps from various providers with customization capabilities.</td>
+<td><code>mymap &lt;- leaflet() %&gt;% addProviderTiles("Esri.WorldPhysical")mymap</code></td>
+</tr>
+<tr class="even">
+<td>Add Markers</td>
+<td><code>addMarkers(lng, lat, layerID, group, popup, popupOptions, label, labeloptions, clusterOptions)</code></td>
+<td>The <strong>addMarkers()</strong> function serve to highlight particular locations on the map through the use of latitude/longitude coordinates. To include a caption, utilize the ‘popup’ parameter. Additionally, labels can be attached to markers for constant display or to appear upon mouseover.</td>
+<td><code>Example 1:mymap = leaflet() %&gt;% addTiles() %&gt;% addMarkers(lng = -73.9851, lat = 40.7589, label = "Default Label", labelOptions = labelOptions(noHide = F))mymapExample 2:mymap = leaflet() %&gt;% addTiles() %&gt;% addPopups(-93.65, 42.0285, 'Here is the Place of Interest', options = popupOptions(closeButton = TRUE))mymap</code></td>
+</tr>
+<tr class="odd">
+<td>Add Circle Markers</td>
+<td><code>addCircleMarkers(map, lng, lat, radius, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions, clusterOptions)</code></td>
+<td>The <strong>addCircleMarkers()</strong> function places circles, rather than icons, to indicate a location on the map. In case the map becomes overly crowded, enhancing clarity is possible by consolidating markers into clusters. The ‘clusterOptions’ parameter facilitates grouping markers by region and displaying the count of markers in each region.</td>
+<td><code>#In this example, we use "quakes", a built-in dataset, which provides the locations of 1000 earthquakes near Fiji since 1964.head(quakes)Example 1:mymap = leaflet(quakes) %&gt;% addProviderTiles("Esri.WorldPhysical") %&gt;% addCircleMarkers(weight = 3, radius=3, color="#ffa500")mymapExample 2:mymap &lt;- leaflet(quakes) %&gt;% addTiles() %&gt;% addCircleMarkers(clusterOptions = markerClusterOptions())mymap</code></td>
+</tr>
+<tr class="even">
+<td>Add Circles</td>
+<td><code>addCircles (map, lng, lat, radius, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions, clusterOptions)</code></td>
+<td>The <strong>addCircles()</strong> function is used to introduce a circle, emphasizing a specific area of interest. The arguments for this function include the coordinates of the point. Notably, the size of the circle dynamically adjusts as you zoom in or out on the map.</td>
+<td><code>mymap &lt;- leaflet(quakes) %&gt;% addTiles() %&gt;% addCircles(lng = quakes$long, lat = quakes$lat)mymap</code></td>
+</tr>
+<tr class="odd">
+<td>Add Rectangles</td>
+<td><code>addRectangles(map,lat1, lng1, lat1, lng2, layerID, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, popup, popupOptions, label, labeloptions, options, highlightOptions)</code></td>
+<td>The <strong>addRectangles()</strong> function is used to add a rectangle shape to highlight an area of interest. The required arguments for this function are the coordinates of four points, defining the boundaries of the rectangle.</td>
+<td><code>mymap &lt;- leaflet(quakes) %&gt;% addTiles() %&gt;% addMarkers(lng = 86.92, lat = 27.99, popup = "Mount Everest") %&gt;% addRectangles(86.9, 27.95, 87, 28.05)mymap</code></td>
+</tr>
+<tr class="even">
+<td>Add Polygons</td>
+<td><code>addPolygons(map, lng, lat, layerId, group, stroke, color, weight, opacity, fill, fillColor, fillOpacity, dashArray, smoothFactor, noClip, popup, popupOptions, label, labelOptions, options, highlightOptions)</code></td>
+<td>The <strong>addPolygons()</strong> function is used to add a custom polygon shape to highlight an area of interest.</td>
+<td><code>leaflet(quakes) %&gt;% addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1, color = "#03F",weight = 5,opacity = 0.5,fill = TRUE,fillColor = color,fillOpacity = 0.2)mymap</code></td>
+</tr>
+<tr class="odd">
+<td>Add Colors</td>
+<td><code>colorNumeric()colorBin()colorQuantile()colorFactor()</code></td>
+<td>Functions such as colorNumeric(), colorBin(), colorQuantile(), colorFactor() allow to add color to shapes using the palette defined. For example, colorNumeric maps numeric values to colors according to a given palette. While colorFactor maps factors to colors, colorBin performs binning based on value. You can also manually specify color by explicitly passing the value for color argument.</td>
+<td><code># define numeric color palettepal &lt;- colorNumeric(palette = "Reds", domain = quakes$mag)# add circles and legend to mapmymap &lt;- leaflet(quakes) %&gt;% addTiles() %&gt;% addCircles(lng = quakes$long, lat = quakes$lat, color = ~pal(mag)) %&gt;%mymap</code></td>
+</tr>
+<tr class="even">
+<td>Add Legend</td>
+<td><code>addLegend(position, colors, labels, opacity, title)</code></td>
+<td>Use the <strong>addLegend()</strong> function to add a legend. Customize its appearance by specifying colors, titles, and position according to your preferences.</td>
+<td><code>mymap = leaflet(quakes) %&gt;% addTiles() %&gt;% addLegend( position = "bottomright", colors = rgb(t(col2rgb(palette())) / 255), labels = palette(), opacity = 1, title = "Legend" )mymap</code></td>
+</tr>
+<tr class="odd">
+<td>Set View</td>
+<td><code>setView(lat, lng, zoom)</code></td>
+<td>Use the <strong>setView()</strong> function to center the map to a particular point and customize the zoom.</td>
+<td><code>mymap &lt;- leaflet() %&gt;% addTiles() %&gt;% addProviderTiles("OpenTopoMap") %&gt;% setView(lng = -71.0589, lat = 42.3601, zoom = 12)mymap</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-3-dashboard" class="level1">
+<h1>Module 3: Dashboard</h1>
+<section id="introduction-to-dashboards" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-dashboards">Introduction to Dashboards</h2>
+<p><img src="clipboard-3356584878.png" class="img-fluid" width="545"></p>
+<p><img src="clipboard-702528267.png" class="img-fluid" width="539"></p>
+<p><img src="clipboard-877393551.png" class="img-fluid" width="571"></p>
+<p><img src="clipboard-432625582.png" class="img-fluid" width="583"></p>
+<p><img src="clipboard-2865225056.png" class="img-fluid" width="521"></p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that draws a histogram (User)</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>ui<span class="ot">&lt;-</span><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Application title</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Old Faithful Geyser Data"</span>),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define sidebar layout with </span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sidebar panel and main panel</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add slider</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">max =</span> <span class="dv">50</span>,</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">value=</span><span class="dv">30</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Server (me)</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>server<span class="ot">&lt;-</span><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output){</span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>distPlot<span class="ot">&lt;-</span><span class="fu">renderPlot</span>({</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generates bins from input$bins of ui.R</span></span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>    bins<span class="ot">&lt;-</span>input<span class="sc">$</span>bins</span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw a histogram with specified number of bins</span></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(faithful,<span class="fu">aes</span>(<span class="at">x=</span>waiting))<span class="sc">+</span></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins =</span> bins)<span class="sc">+</span></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Waiting time"</span>,<span class="at">y=</span><span class="st">"frequency"</span>,<span class="at">title =</span> <span class="st">"Histogram of waiting time "</span>)<span class="sc">+</span></span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p></p><div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div><p></p>
+</div>
+</div>
+</section>
+<section id="summary-highlights-3" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlights-3">Summary &amp; Highlights&nbsp;</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<p>The&nbsp;best dashboards answer critical business questions.&nbsp;&nbsp;</p>
+<p>An interactive dashboard is made up of four components: Analyze, visualize, interact, and&nbsp;Serve.&nbsp;</p>
+<p>The&nbsp;Shiny package&nbsp;helps you&nbsp;build interactive dashboard apps&nbsp;using R.&nbsp;</p>
+<p>A Shiny app works by defining a user interface (UI) and back-end server logic that&nbsp;work together to generate visualizations based on user input.&nbsp;</p>
+<p>There are two standards for creating Shiny application files: a single file or two files named&nbsp;server.R&nbsp;and&nbsp;ui.R&nbsp;located in a single folder&nbsp;</p>
+<p>Control widgets, called inputs,&nbsp;are web elements that users can interact with, including&nbsp;HTML tags, layouts, and widgets.&nbsp;</p>
+<p>The Server performs the logic whenever input widgets change and then sends the result back to the respective UI output elements.&nbsp;</p>
+<p>You construct the UI for a Shiny app using the&nbsp;<strong>shinyUI()</strong>&nbsp;function.&nbsp;</p>
+<p>The&nbsp;<strong>fluidPage()</strong>&nbsp;function holds the&nbsp;title and defines the layout for the app.&nbsp;</p>
+<p>A Shiny dashboard can have one of several layouts. A common layout is the sidebar layout, which has web controls in a sidebar on the left and plots on the main area on the right of the dashboard.&nbsp;</p>
+<p>To&nbsp;construct&nbsp;the user interface (UI)&nbsp;for a simple Shiny application with a sidebar layout:&nbsp;</p>
+<ul>
+<li><p>Add a title panel using&nbsp;<strong>titlePanel()</strong>.&nbsp;</p></li>
+<li><p>Define a layout using&nbsp;<strong>sidebarLayout()</strong>.&nbsp;</p></li>
+<li><p>Add&nbsp;<strong>sidebarPanel()</strong>&nbsp;and&nbsp;<strong>mainPanel()</strong> panels to the layout.&nbsp;</p></li>
+<li><p>Add interactive web components&nbsp;to the sidebar panel,&nbsp;such as&nbsp;<strong>sliderInput()</strong>.&nbsp;</p></li>
+<li><p>Create a plot element in the main panel using&nbsp;<strong>plotOutput()</strong>, passing in an id that the server logic will use to return the plot.&nbsp;</p></li>
+</ul>
+<p>The server logic for the Shiny application:&nbsp;</p>
+<ul>
+<li><p>Retrieves&nbsp;the input from&nbsp;a web control.&nbsp;</p></li>
+<li><p>Gets&nbsp;the dataset.&nbsp;</p></li>
+<li><p>Performs&nbsp;the application logic on the data using the&nbsp;control&nbsp;input.&nbsp;&nbsp;</p></li>
+<li><p>Generates&nbsp;the plot using the data from the result of the application logic.&nbsp;</p></li>
+<li><p>Sends&nbsp;the plot back to the UI output element.&nbsp;</p></li>
+</ul>
+</section>
+<section id="cheatsheet---dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="cheatsheet---dashboard">CheatSheet - DashBoard</h2>
+<table class="table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 38%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install shiny</td>
+<td><code>install.packages("name of the packae")</code></td>
+<td>Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R.</td>
+<td><code>install.packages("shiny")</code></td>
+</tr>
+<tr class="even">
+<td>load shiny</td>
+<td><code>library("name of the packae")</code></td>
+<td>Run library(shiny) to load the shiny and make it available in your current R session.</td>
+<td><code>library(shiny)</code></td>
+</tr>
+<tr class="odd">
+<td>shinyUI</td>
+<td><code>shinyUI(ui)</code></td>
+<td>files to register a user interface with Shiny.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fluidPage</td>
+<td><code>fluidPage(..., title = " " , ...,)</code></td>
+<td>To create rows within the grid you use the fluidRow() function.</td>
+<td><code>fluidPage(titlePanel("Motor Trend Car Road Tests Data"), verticalLayout())</code></td>
+</tr>
+<tr class="odd">
+<td>titlePanel</td>
+<td><code>titlePanel("title")</code></td>
+<td>An application title to display.</td>
+<td><code>titlePanel("Motor Trend Car Road Tests Data")</code></td>
+</tr>
+<tr class="even">
+<td>vertical_layout</td>
+<td><code>vertical_layout(objects...)</code></td>
+<td>Lays out elements vertically, one by one below one another.</td>
+<td><code>verticalLayout(plotOutput("histPlot"),sliderInput( inputId = "bins", label = "Number of bins:", min = 1, max = 10, value = 5)</code></td>
+</tr>
+<tr class="odd">
+<td>sliderInput</td>
+<td><code>sliderInput(inputId, label, min, max, value)</code></td>
+<td>Constructs a slider widget to select a numeric value from a range.</td>
+<td><code>sliderInput("bins", "Number of bins:", 1, 10, 5)</code></td>
+</tr>
+<tr class="even">
+<td>plotOutput</td>
+<td><code>plotOutput(outputId, width = "", height = "",...)</code></td>
+<td>Constructs a slider widget to select a numeric value from a range.</td>
+<td><code>sliderInput("bins", "Number of bins:", 1, 10, 5)</code></td>
+</tr>
+<tr class="odd">
+<td>Install ggplot2</td>
+<td><code>install.packages("name of the packae")</code></td>
+<td>ggplot2 is a plotting package that makes it simple to create complex plots from data in a data frame.</td>
+<td><code>install.packages("ggplot2")</code></td>
+</tr>
+<tr class="even">
+<td>load ggplot</td>
+<td><code>library("name of the packae")</code></td>
+<td>Run library(ggplot) to load the ggplot and make it available in your current R session.</td>
+<td><code>library(ggplot)</code></td>
+</tr>
+<tr class="odd">
+<td>ggplot</td>
+<td><code>ggplot(object..)</code></td>
+<td>It can greatly improve the quality and aesthetics of your graphics, and will make you much more efficient in creating them.</td>
+<td><code>ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = input$bins)</code></td>
+</tr>
+<tr class="even">
+<td>geom_histogram</td>
+<td><code>geom_histogram()</code></td>
+<td>Histograms ( geom_histogram() ) display the counts with bars.</td>
+<td><code>geom_histogram(bins = input$bins)</code></td>
+</tr>
+<tr class="odd">
+<td>theme</td>
+<td><code>theme(line,rect,text,...)</code></td>
+<td>Themes are a powerful way to customize the non-data components of your plots.</td>
+<td><code>theme(text = element_text(size = 20)</code></td>
+</tr>
+<tr class="even">
+<td>shinyServer</td>
+<td><code>shinyServer(objects...)</code></td>
+<td>This generally involves creating functions that map user inputs to various kinds of output.</td>
+<td><code>shinyServer( function(input, output))</code></td>
+</tr>
+<tr class="odd">
+<td>renderPlot</td>
+<td><code>renderPlot(objects...)</code></td>
+<td>Renders a reactive plot that is suitable for assigning to an output slot.</td>
+<td><code>renderPlot({ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = input$bins)})</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="explore-shiny-components" class="level2">
+<h2 class="anchored" data-anchor-id="explore-shiny-components">Explore Shiny Components</h2>
+</section>
+<section id="deployment" class="level2">
+<h2 class="anchored" data-anchor-id="deployment">Deployment</h2>
+<p><img src="clipboard-3814965138.png" class="img-fluid" width="633"></p>
+<p><img src="clipboard-2153680912.png" class="img-fluid"></p>
+</section>
+<section id="summary-highlights-4" class="level2">
+<h2 class="anchored" data-anchor-id="summary-highlights-4">Summary &amp; Highlights</h2>
+<p>Congratulations! You have completed this lesson. At this point in the course, you know:&nbsp;&nbsp;</p>
+<p>You add web controls to a sidebar panel using various functions, for example, use the&nbsp;<strong>varSelectInput()</strong>&nbsp;function to create a control that contains a drop-down list of choice or the&nbsp;<strong>sliderInput()</strong>&nbsp;function to create a slider control.&nbsp;</p>
+<p>You can add HTML elements to a panel. For example, you can add heading text by using the heading functions, like&nbsp;<strong>h3()</strong>,&nbsp;add text using&nbsp;the paragraph function,&nbsp;<strong>p()</strong>, or&nbsp;insert&nbsp;a line break using&nbsp;<strong>br()</strong>.&nbsp;</p>
+<p>In the main panel, you can define a tabbed panel that contains multiple tabs of content. The&nbsp;<strong>tabsetPanel()</strong>&nbsp;function creates the&nbsp;tabset&nbsp;panel and then you use the&nbsp;<strong>tabPanel()</strong>&nbsp;function to add each new tab.&nbsp;</p>
+<p>In the UI, you specify the location of a plot by using the&nbsp;<strong>plotOutput()</strong>&nbsp;function&nbsp;passing in an id that the server logic will use to return the plot, for example “p1”.&nbsp;</p>
+<p>In the server logic for the Shiny app, you construct the plots and then render them using the&nbsp;<strong>renderPlot()</strong>&nbsp;function. You assign the plot to the output parameter using the id that you assigned to the&nbsp;<strong>plotOutput()</strong>&nbsp;function in the UI, for example, output$p1.&nbsp;&nbsp;</p>
+<p>There are three ways to deploy a Shiny app:&nbsp;</p>
+<ul>
+<li><p>shinyapps.io&nbsp;</p></li>
+<li><p>Shiny Server&nbsp;</p></li>
+<li><p>RStudio Connect&nbsp;</p></li>
+</ul>
+<p>To publish a Shiny dashboard using shinyapps.io:</p>
+<ul>
+<li><p>Create an shinyapp.io account.</p></li>
+<li><p>Publish the app from RStudio and connect it to your shinyapp.io account.</p></li>
+</ul>
+<p>R Markdown files combine code and text, they can be knitted to create a reproducible report in different formats like HTML or PDF.</p>
+<p>There are three main components of R Markdown files:</p>
+<ul>
+<li><p>YAML header</p></li>
+<li><p>Text and markdown</p></li>
+<li><p>R code chunks</p></li>
+</ul>
+</section>
+<section id="cheatsheet---dashboard-application" class="level2">
+<h2 class="anchored" data-anchor-id="cheatsheet---dashboard-application">CheatSheet - Dashboard Application</h2>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 16%">
+<col style="width: 48%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th><strong>Syntax</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install shiny</td>
+<td><code>install.packages("name of the package")</code></td>
+<td>Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R.</td>
+<td><code>install.packages("shiny")</code></td>
+</tr>
+<tr class="even">
+<td>load shiny</td>
+<td><code>library("name of the package")</code></td>
+<td>Run library(shiny) to load the shiny and make it available in your current R session.</td>
+<td><code>library(shiny)</code></td>
+</tr>
+<tr class="odd">
+<td>shinyUI</td>
+<td><code>shinyUI(ui)</code></td>
+<td>files to register a user interface with Shiny.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fluidPage</td>
+<td><code>fluidPage(..., title = " " , ...,)</code></td>
+<td>To create rows within the grid you use the fluidRow() function.</td>
+<td><code>fluidPage(titlePanel("Motor Trend Car Road Tests Data"), verticalLayout())</code></td>
+</tr>
+<tr class="odd">
+<td>titlePanel</td>
+<td><code>titlePanel("title")</code></td>
+<td>An application title to display.</td>
+<td><code>titlePanel("Motor Trend Car Road Tests Data")</code></td>
+</tr>
+<tr class="even">
+<td>sidebarLayout</td>
+<td><code>sidebarLayout(sidebarPanel, mainPanel, position = c("left", "right"))</code></td>
+<td>Create a layout (sidebarLayout()) with a sidebar (sidebarPanel()) and main area (mainPanel()).</td>
+<td><code>sidebarLayout( sidebarPanel( sliderInput("obs", "Number of observations:",0,1000,500 ), mainPanel(plotOutput("distPlot") )</code></td>
+</tr>
+<tr class="odd">
+<td>sidebarPanel</td>
+<td><code>sidebarPanel(..., width = 4)</code></td>
+<td>The sidebarPanel() containing input controls.</td>
+<td><code>sidebarPanel( sliderInput("obs", "Number of observations:",0,1000,500 )</code></td>
+</tr>
+<tr class="even">
+<td>varSelectInput</td>
+<td><code>varSelectInput( inputId, label, data, selected = " ")</code></td>
+<td>Create a select list that can be used to choose a single or multiple items from the column names of a data frame.</td>
+<td><code>varSelectInput("continuous_variable", "Select Continuous Variable", data = select(mtcars, -categorical_varibles), selected = "mpg")</code></td>
+</tr>
+<tr class="odd">
+<td>numericInput</td>
+<td><code>numericInput( inputId, label, value)</code></td>
+<td>Create an input control for entry of numeric values.</td>
+<td><code>numericInput("bins","Number of bins",min = 2, max = 20,value = 10)</code></td>
+</tr>
+<tr class="even">
+<td>radioButtons</td>
+<td><code>radioButtons(inputId, label, choices, selected = NULL)</code></td>
+<td>Create a set of radio buttons used to select an item from a list.</td>
+<td><code>radioButtons("hist_fill", "Histogram fill:", choices = c("default", "blue"))</code></td>
+</tr>
+<tr class="odd">
+<td>mainPanel</td>
+<td><code>mainPanel(objects...)</code></td>
+<td>Create a main panel containing output elements that can in turn be passed to sidebarLayout.</td>
+<td><code>mainPanel(tabsetPanel( tabPanel("Distribution of Numerical Variables",plotOutput("p1"), plotOutput("p2") )</code></td>
+</tr>
+<tr class="even">
+<td>tabsetPanel</td>
+<td><code>tabsetPanel(objects...)</code></td>
+<td>Tabsets are useful for dividing output into multiple independently viewable sections.</td>
+<td><code>tabsetPanel( tabPanel("Distribution of Numerical Variables",plotOutput("p1"),plotOutput("p2"))</code></td>
+</tr>
+<tr class="odd">
+<td>plotOutput</td>
+<td><code>plotOutput(outputId, width = "", height = "",...)</code></td>
+<td>Constructs a slider widget to select a numeric value from a range.</td>
+<td><code>plotOutput("p1")</code></td>
+</tr>
+<tr class="even">
+<td>Install ggplot2</td>
+<td><code>install.packages("name of the package")</code></td>
+<td>ggplot2 is a plotting package that makes it simple to create complex plots from data in a data frame.</td>
+<td><code>install.packages("ggplot2")</code></td>
+</tr>
+<tr class="odd">
+<td>load ggplot</td>
+<td><code>library("name of the package")</code></td>
+<td>Run library(ggplot) to load the ggplot and make it available in your current R session.</td>
+<td><code>library(ggplot)</code></td>
+</tr>
+<tr class="even">
+<td>ggplot</td>
+<td><code>ggplot(object..)</code></td>
+<td>It can greatly improve the quality and aesthetics of your graphics, and will make you much more efficient in creating them.</td>
+<td><code>ggplot(mtcars, aes(x = !!input$continuous_variable))</code></td>
+</tr>
+<tr class="odd">
+<td>geom_histogram</td>
+<td><code>geom_histogram()</code></td>
+<td>Histograms ( geom_histogram() ) display the counts with bars.</td>
+<td><code>geom_histogram(bins = input$bins)</code></td>
+</tr>
+<tr class="even">
+<td>geom_boxplot</td>
+<td><code>geom_boxplot()</code></td>
+<td>The boxplot compactly displays the distribution of a continuous variable.</td>
+<td><code>ggplot(mtcars, aes(y = !!input$continuous_variable)) +geom_boxplot()</code></td>
+</tr>
+<tr class="odd">
+<td>coord_flip</td>
+<td><code>coord_flip(xlim = NULL, ylim = NULL, expand = TRUE)</code></td>
+<td>Flipped cartesian coordinates so that horizontal becomes vertical, and vertical, horizontal. This is primarily useful for converting geoms and statistics which display y conditional on x, to x conditional on y.</td>
+<td><code>ggplot(mtcars, aes(y = !!input$continuous_variable)) + geom_boxplot() + coord_flip()</code></td>
+</tr>
+<tr class="even">
+<td>shinyServer</td>
+<td><code>shinyServer(objects...)</code></td>
+<td>This generally involves creating functions that map user inputs to various kinds of output.</td>
+<td><code>shinyServer(function(input, output))</code></td>
+</tr>
+<tr class="odd">
+<td>renderPlot</td>
+<td><code>renderPlot(objects...)</code></td>
+<td>Renders a reactive plot that is suitable for assigning to an output slot.</td>
+<td><code>renderPlot({p &lt;- ggplot(mtcars, aes(x = !!input$continuous_variable))})</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-4-final-project" class="level1">
+<h1>Module 4: Final Project</h1>
+<section id="final-project-overview-dashboard-with-shiny-using-census-data" class="level2">
+<h2 class="anchored" data-anchor-id="final-project-overview-dashboard-with-shiny-using-census-data">Final Project Overview – Dashboard with Shiny using Census Data</h2>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">OVERVIEW</h3>
+<p>Now that you have been equipped with the knowledge and skills to create graphs and dashboards with R, you will have the opportunity in this final project to practice and apply it by using real-world census data.</p>
+</section>
+<section id="final-project-scenario" class="level3">
+<h3 class="anchored" data-anchor-id="final-project-scenario">FINAL PROJECT SCENARIO</h3>
+<p>In this scenario, you will play the role of a data scientist who was recently hired by a company that provides career services to those with lower incomes. The marketing team has a small budget and wants your help to find out which demographics (age, education, gender, etc) to target advertising in the US. The data originates from the census database.</p>
+<p>Your task is to create an interactive dashboard with Shiny to explore census data to figure out what trends in different demographics you can find and tell the marketing team your findings.</p>
+<p>Your team has been using R-Studio lab on Coursera, which is a powerful and easy-to-use platform for data analysis and data science tasks. As a new team member, your team leader has assigned this task to you. You need to leverage your R skills to acquire the relevant datasets, as well as visualize them using RStudio.</p>
+</section>
+<section id="instructional-labs" class="level3">
+<h3 class="anchored" data-anchor-id="instructional-labs">INSTRUCTIONAL LABS</h3>
+<p>To help you finish the final project, we have prepared an instructional lab that goes over how to:</p>
+<ul>
+<li><p>Launch RStudio on Coursera Labs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+<li><p>Download the skeleton server and UI code, as well as the dataset&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+<li><p>Understand the starter code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+<li><p>Step through the tasks to create a dashboard using the UCI adult dataset (also known as census income dataset)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+<li><p>Share your final dashboard for peer-review</p></li>
+</ul>
+</section>
+<section id="grading-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="grading-criteria">GRADING CRITERIA</h3>
+<p>There are a total of 20 points for 7 tasks in this final project. Your final assignment will be graded by your peers who are also completing this assignment within the same session.&nbsp; You need to submit the following item for peer review:</p>
+<ul>
+<li>A screenshot of the component of the dashboard for each task</li>
+</ul>
+<p>Your grade will be based on the following tasks:</p>
+<p><strong>Task 1:</strong> Add application title in the UI (1 pt)</p>
+<p><strong>Task 2:</strong> Add first fluidRow to select input for country in UI (2 pts)</p>
+<p><strong>Task 3:</strong> Add second fluidRow to control how to plot the continuous variables in UI (2 pts)</p>
+<p><strong>Task 4:</strong> Add third fluidRow to control how to plot the categorical variables in UI (2 pts)</p>
+<p><strong>Task 5:</strong> Create logic to plot histogram or boxplot in server</p>
+<p><strong>- Task 5.1:</strong> Show the boxplot of the “age” variable (2 pts)</p>
+<p><strong>- Task 5.2:</strong> Show the histogram of the “hours_per_week” (2 pts)</p>
+<p><strong>Task 6:</strong> Create logic to plot faceted bar chart or stacked bar chart in server</p>
+<p><strong>- Task 6.1:</strong> Show the faceted unstacked bar chart for the “workclass” variable (3 pts)</p>
+<p><strong>- Task 6.2:</strong> Show the stacked bar chart for the “education” variable (3 pts)</p>
+<p><strong>Task 7:</strong> Share your final dashboard (including any optional changes to the themes or customizations to the graphs) (3 pts)</p>
+</section>
+</section>
+<section id="congratulations-and-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="congratulations-and-next-steps">Congratulations and Next Steps</h2>
+<p>Congratulations on completing this course. We hope you enjoyed it.</p>
+<p>As a next step, you can take the follow-on&nbsp;Capstone course&nbsp;to&nbsp;combine everything you have learned&nbsp;from&nbsp;the introduction to R course, the data analysis with R course, the SQL with R course, and this visualization with the R course. You will get to apply all your R knowledge on a real-world scenario capstone project and presentation:&nbsp;</p>
+<ul>
+<li><a href="https://www.coursera.org/learn/data-science-with-r-capstone-project" title="Link to Data Science with R Capstone Project">Data Science with R - Capstone Project</a></li>
+</ul>
+<p>Note: Successful completion of this course is a prerequisite for the Data Science with R Professional Certificate:</p>
+<ul>
+<li><a href="https://www.coursera.org/specializations/applied-data-science-r" title="Link to professional certificate program">Applied Data Science with R Professional Certificate</a></li>
+</ul>
+<p>We also encourage you to leave your feedback and rate this course so that we can continue to improve the course content.</p>
+<p>Good luck!</p>
+</section>
+</section>
+<section id="credits-and-acknowledgments" class="level1">
+<h1>Credits and Acknowledgments</h1>
+<section id="primary-instructors" class="level3">
+<h3 class="anchored" data-anchor-id="primary-instructors">Primary Instructors</h3>
+<ul>
+<li><p>Gabriela de Queiroz</p></li>
+<li><p>Saishruthi Swaminathan</p></li>
+<li><p>Tiffany Zhu</p></li>
+<li><p>Yiwen Li</p></li>
+</ul>
+</section>
+<section id="other-contributors-staff" class="level3">
+<h3 class="anchored" data-anchor-id="other-contributors-staff">Other Contributors &amp; Staff</h3>
+<ul>
+<li><p><strong>Project Lead:</strong> Rav Ahuja</p></li>
+<li><p><strong>Instructional Designer:</strong> Jo Bader</p></li>
+<li><p><strong>Lab Authors:</strong> Gabriela de Queiroz, Saishruthi Swaminathan, Tiffany Zhu, Yiwen Li</p></li>
+<li><p><strong>Technical Advisor:</strong> Yan Luo</p></li>
+</ul>
+</section>
+<section id="production-team" class="level3">
+<h3 class="anchored" data-anchor-id="production-team">Production Team</h3>
+<ul>
+<li><p><strong>Publishing:</strong> Grace Barker, Rachael Jones</p></li>
+<li><p><strong>Project Coordinators:</strong> Heather Vaughan</p></li>
+<li><p><strong>Narration:</strong> Bella West</p></li>
+<li><p><strong>Video Production:</strong>&nbsp;Lauren Hall, Hunter Bay, Alex Jones</p></li>
+</ul>
+</section>
+<section id="teaching-assistants-and-forum-moderators" class="level3">
+<h3 class="anchored" data-anchor-id="teaching-assistants-and-forum-moderators">Teaching Assistants and Forum Moderators</h3>
+<ul>
+<li><p>Lavanya T S</p></li>
+<li><p>Malika Singla</p></li>
+<li><p>Lakshmi Holla</p></li>
+<li><p>Geetika Pal</p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
